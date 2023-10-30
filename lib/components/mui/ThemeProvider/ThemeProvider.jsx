@@ -11,4 +11,6 @@ ThemeProvider.propTypes = {
   theme: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
 };
 
+ThemeProvider.displayName = "ThemeProvider";
+
 export default ThemeProvider;
