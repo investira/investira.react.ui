@@ -1,0 +1,44 @@
+{
+  "name": "@investira/react.ui",
+  "private": false,
+  "version": "0.0.0",
+  "type": "module",
+  "main": "./dist/core.cjs",
+  "module": "./dist/core.js",
+  "exports": {
+    ".": {
+      "import": "./dist/core.js",
+      "require": "./dist/core.cjs"
+    },
+    "./mui": {
+      "import": "./dist/mui.js",
+      "require": "./dist/mui.cjs"
+    }
+  },
+  "files": [
+    "dist/*"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "prepublishOnly": "npm run build",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "@types/react": "^18.2.15",
+    "@types/react-dom": "^18.2.7",
+    "@vitejs/plugin-react": "^4.0.3",
+    "eslint": "^8.45.0",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.3",
+    "vite": "^4.4.5"
+  }
+}
