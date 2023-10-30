@@ -11,10 +11,10 @@ export default defineConfig({
       entry: {
         core: resolve(__dirname, "lib/core.js"),
         mui: resolve(__dirname, "lib/mui.js"),
-        lib: resolve(__dirname, "lib/lib.js"),
-        charts: resolve(__dirname, "lib/charts.js"),
-        reports: resolve(__dirname, "lib/reports.js"),
         styles: resolve(__dirname, "lib/styles.js"),
+        // lib: resolve(__dirname, "lib/lib.js"),
+        // charts: resolve(__dirname, "lib/charts.js"),
+        // reports: resolve(__dirname, "lib/reports.js"),
       },
       formats: ["es", "cjs"],
     },
