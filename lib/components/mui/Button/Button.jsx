@@ -1,7 +1,7 @@
-import { default as MuiWButton } from "@mui/material/Button";
+import { default as MuiButton } from "@mui/material/Button";
 
 function Button(props) {
-  return <MuiWButton {...props} />;
+  return <MuiButton {...props} />;
 }
 
 Button.displayName = "Button";
