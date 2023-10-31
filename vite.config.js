@@ -11,8 +11,8 @@ export default defineConfig({
             entry: {
                 core: resolve(__dirname, 'lib/core.js'),
                 mui: resolve(__dirname, 'lib/mui.js'),
-                themes: resolve(__dirname, 'lib/themes.js')
-                // lib: resolve(__dirname, "lib/lib.js"),
+                themes: resolve(__dirname, 'lib/themes.js'),
+                lib: resolve(__dirname, 'lib/lib.js')
                 // charts: resolve(__dirname, "lib/charts.js"),
                 // reports: resolve(__dirname, "lib/reports.js"),
             },
@@ -22,6 +22,11 @@ export default defineConfig({
             external: [
                 'react',
                 'react-dom',
+                'react-redux',
+                'redux',
+                'redux-persist',
+                'redux-persist-pouchdb',
+                'redux-thunk',
                 'react/jsx-runtime',
                 '@mui/material',
                 '@mui/material/styles',
@@ -31,13 +36,19 @@ export default defineConfig({
                 '@mui/lab',
                 'investira.sdk',
                 'moment',
-                'prop-types'
+                'prop-types',
+                'react-transition-group',
+                'classnames'
             ],
             output: {
                 globals: {
                     react: 'React',
                     'react-dom': 'ReactDOM',
                     'react/jsx-runtime': 'jsxRuntime',
+                    redux: 'redux',
+                    'redux-persist': 'reduxPersist',
+                    'redux-persist-pouchdb': 'reduxPersistPouchdb',
+                    'redux-thunk': 'reduxThunk',
                     '@mui/material': 'MaterialUI',
                     '@mui/material/styles': 'MaterialUIStyles',
                     '@emotion/react': 'emotionReact',
@@ -46,7 +57,9 @@ export default defineConfig({
                     '@mui/lab': 'muiLab',
                     'investira.sdk': 'investiraSDK',
                     moment: 'moment',
-                    'prop-types': 'PropTypes'
+                    'prop-types': 'PropTypes',
+                    'react-transition-group': 'reactTransitionGroup',
+                    classnames: 'classnames'
                 }
             }
         }
