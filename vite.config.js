@@ -11,7 +11,7 @@ export default defineConfig({
       entry: {
         core: resolve(__dirname, "lib/core.js"),
         mui: resolve(__dirname, "lib/mui.js"),
-        styles: resolve(__dirname, "lib/styles.js"),
+        themes: resolve(__dirname, "lib/themes.js"),
         // lib: resolve(__dirname, "lib/lib.js"),
         // charts: resolve(__dirname, "lib/charts.js"),
         // reports: resolve(__dirname, "lib/reports.js"),

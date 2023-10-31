@@ -1,7 +1,7 @@
 {
   "name": "@investira/react.ui",
   "private": false,
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
   "main": "./dist/core.cjs",
   "module": "./dist/core.js",
@@ -13,6 +13,10 @@
     "./mui": {
       "import": "./dist/mui.js",
       "require": "./dist/mui.cjs"
+    },
+    "./themes": {
+      "import": "./dist/themes.js",
+      "require": "./dist/themes.cjs"
     }
   },
   "files": [
