@@ -21,9 +21,13 @@ export default defineConfig({
         rollupOptions: {
             external: [
                 'react',
+                'react-dnd',
+                'react-dnd-html5-backend',
+                'react-dnd-touch-backend',
                 'react-dom',
                 'react-redux',
                 'redux',
+                'react-router-dom',
                 'redux-persist',
                 'redux-persist-pouchdb',
                 'redux-thunk',
@@ -43,9 +47,13 @@ export default defineConfig({
             output: {
                 globals: {
                     react: 'React',
+                    'react-dnd': 'reactDnd',
+                    'react-dnd-html5-backend': 'reactDndHtml5Backend',
+                    'react-dnd-touch-backend': 'reactDndTouchBackend',
                     'react-dom': 'ReactDOM',
                     'react/jsx-runtime': 'jsxRuntime',
                     redux: 'redux',
+                    'react-router-dom': 'reactRouterDom',
                     'redux-persist': 'reduxPersist',
                     'redux-persist-pouchdb': 'reduxPersistPouchdb',
                     'redux-thunk': 'reduxThunk',
