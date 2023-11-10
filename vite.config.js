@@ -1,10 +1,11 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
 import react from '@vitejs/plugin-react';
+import svgr from 'vite-plugin-svgr';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-    plugins: [react()],
+    plugins: [react(), svgr()],
     build: {
         copyPublicDir: false,
         lib: {
@@ -28,7 +29,7 @@ export default defineConfig({
                 'react-redux',
                 'redux',
                 'react-router-dom',
-                'react-virtualized',
+                // 'react-virtualized',
                 'redux-persist',
                 'redux-persist-pouchdb',
                 'redux-thunk',
@@ -52,7 +53,7 @@ export default defineConfig({
                     'react-dnd-html5-backend': 'reactDndHtml5Backend',
                     'react-dnd-touch-backend': 'reactDndTouchBackend',
                     'react-dom': 'ReactDOM',
-                    'react-virtualized': 'reactVirtualized',
+                    // 'react-virtualized': 'reactVirtualized',
                     'react/jsx-runtime': 'jsxRuntime',
                     redux: 'redux',
                     'react-router-dom': 'reactRouterDom',

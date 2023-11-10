@@ -1,0 +1,66 @@
+.root {
+  position: relative;
+  min-height: 100%;
+}
+
+.list {
+  position: relative;
+}
+
+.emptyList {
+  height: 100%;
+}
+
+.animated {
+  animation-duration: 500ms;
+  animation-fill-mode: both;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.zoomOutRight {
+  animation-name: zoomOutRight;
+}
+
+.fadeInUp {
+  animation-name: fadeInUp;
+}
+
+.appearActive {
+  @extend .animated;
+  @extend .fadeInUp;
+}
+
+.enterActive {
+  @extend .animated;
+  @extend .fadeInUp;
+}
+
+.exitActive {
+  @extend .animated;
+  @extend .zoomOutRight;
+}
+
+@keyframes zoomOutRight {
+  40% {
+    opacity: 0.9;
+    transform: scale3d(0.9, 0.9, 0.9) translate3d(0, 0, 0);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale3d(0.9, 0.9, 0.9) translate3d(100vw, 0, 0);
+    transform-origin: right center;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}

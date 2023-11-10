@@ -1,9 +1,10 @@
-import { default as MuiAppBar } from "@mui/material/AppBar";
+import { default as MuiAppBar } from '@mui/material/AppBar';
 
 function AppBar(props) {
-  return <MuiAppBar {...props} />;
+    'use client';
+    return <MuiAppBar {...props} />;
 }
 
-AppBar.displayName = "AppBar";
+AppBar.displayName = 'AppBar';
 
 export default AppBar;

@@ -1,9 +1,9 @@
 import { PropTypes } from 'prop-types';
 import { memo } from 'react';
-import { Box } from '../';
+import { Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { validators } from 'investira.sdk';
-import { displays } from 'investira.react.lib';
+import { displays } from '../../../lib';
 
 const Root = styled(Box)(({ theme, highlight }) => {
     return {

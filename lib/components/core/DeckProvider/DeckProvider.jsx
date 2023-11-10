@@ -2,7 +2,7 @@ import { memo, useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { validators } from 'investira.sdk';
 import { DeckContext } from '../';
-import { useRouteMatch, useHistory } from 'react-router-dom';
+import { useMatch, useNavigate } from 'react-router-dom';
 
 const DeckProvider = memo(props => {
     const [activeView, setActive] = useState(null);
@@ -11,8 +11,8 @@ const DeckProvider = memo(props => {
 
     const URL = useRef(null);
 
-    const match = useRouteMatch();
-    const history = useHistory();
+    const match = useMatch();
+    const navigate = useNavigate();
 
     const isActive = pId => {
         return pId === activeView;
@@ -23,11 +23,11 @@ const DeckProvider = memo(props => {
     };
 
     const pushRoute = (pUrl, pId) => {
-        history.push(`${pUrl}/${pId}`);
+        navigate(`${pUrl}/${pId}`);
     };
 
     const pushPathName = () => {
-        history.push({ pathname: match.url + `/${props.initialView}` });
+        navigate({ pathname: match.url + `/${props.initialView}` });
     };
 
     const handleNextView = pId => {
@@ -48,7 +48,7 @@ const DeckProvider = memo(props => {
             let xPrevView = [...prevView];
             const xActive = xPrevView.pop();
             const xIsInitialView = xActive === props.initialView;
-            props.withRoute && history.goBack();
+            props.withRoute && navigate(-1);
             xIsInitialView && props.withRoute && pushPathName();
 
             setActive(xActive);
@@ -69,7 +69,7 @@ const DeckProvider = memo(props => {
         URL.current = match.url;
         setActive(props.initialView);
         setPreview(props.initialPrev);
-    }, [props.initialView, props.initialPrev]);
+    }, [props.initialView, props.initialPrev, match.url]);
 
     useEffect(() => {
         props.withRoute && pushPathName();

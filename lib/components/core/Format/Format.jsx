@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
-import { Typography, Rate } from '@mui/material';
+import { Typography } from '@mui/material';
 import { formats } from 'investira.sdk';
+import { Rate } from '../';
 
 function Format(props) {
     const formatValue = (pType, pValue, pDecimais) => {
