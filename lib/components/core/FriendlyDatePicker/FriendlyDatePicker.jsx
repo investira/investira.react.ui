@@ -1,47 +1,8 @@
 import PropTypes from 'prop-types';
-import makeStyles from '@mui/styles/makeStyles';
-import classNames from 'classnames';
-import { Typography } from '../';
+import { Box, Typography } from '@mui/material';
 import { dates } from 'investira.sdk';
 
-const useStyles = makeStyles(
-    theme => {
-        return {
-            root: {
-                position: 'relative',
-                display: 'flex',
-                justifyContent: 'start',
-                alignContent: 'center',
-                flexWrap: 'wrap'
-            },
-            monthYear: {
-                padding: '4px 0',
-                marginRight: '8px',
-                color: theme.palette.primary.main,
-                textAlign: 'right',
-                textTransform: 'uppercase'
-            },
-            day: {
-                color: theme.palette.primary.main,
-                textTransform: 'uppercase'
-            },
-            label: {
-                width: '100%'
-            },
-            locked: {
-                color: theme.palette.secondary.light
-            },
-            disabled: {
-                color: theme.palette.secondary.light
-            }
-        };
-    },
-    { name: 'FriendlyDatePicker' }
-);
-
 const FriendlyDatePicker = props => {
-    const classes = useStyles();
-
     const xMomentUtils = new props.utils({
         locale: props.locale
     });
@@ -56,39 +17,47 @@ const FriendlyDatePicker = props => {
         today: xMomentUtils.isSameDay(xCurrentDate, xTodayDate)
     };
 
-    const xClassDay = classNames(classes.day, {
-        [classes.locked]: props.locked,
-        [classes.disabled]: props.disabled
-    });
+    const xDaySx = {
+        color: 'primary.main',
+        textTransform: 'uppercase',
+        ...((props.locked || props.disabled) && {
+            color: 'secondary.light'
+        })
+    };
 
     return (
-        <div className={classes.root}>
-            <div className={classes.label}>
+        <Box
+            sx={{
+                position: 'relative',
+                display: 'flex',
+                justifyContent: 'start',
+                alignContent: 'center',
+                flexWrap: 'wrap'
+            }}>
+            <Box sx={{ width: '100%' }}>
                 <Typography color={'textSecondary'} variant={'caption'}>
                     {props.label}
                 </Typography>
-            </div>
+            </Box>
             {xDate.today ? (
-                <div className={xClassDay}>
-                    <div style={{ paddingTop: '19px' }}>
+                <Box sx={xDaySx}>
+                    <Box sx={{ paddingTop: '19px' }}>
                         <Typography color={'inherit'} variant={'h4'}>
                             Hoje
                         </Typography>
-                    </div>
-                </div>
+                    </Box>
+                </Box>
             ) : (
-                <>
-                    <div className={xClassDay}>
-                        <Typography color={'inherit'} variant={'body2'}>
-                            {xDate.day} <span style={{ fontWeight: 500 }}>{xDate.month}</span>
-                        </Typography>
-                        <Typography color={'inherit'} variant={'h4'}>
-                            {xDate.year}
-                        </Typography>
-                    </div>
-                </>
+                <Box sx={xDaySx}>
+                    <Typography color={'inherit'} variant={'body2'}>
+                        {xDate.day} <span style={{ fontWeight: 500 }}>{xDate.month}</span>
+                    </Typography>
+                    <Typography color={'inherit'} variant={'h4'}>
+                        {xDate.year}
+                    </Typography>
+                </Box>
             )}
-        </div>
+        </Box>
     );
 };
 

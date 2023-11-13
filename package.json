@@ -34,6 +34,7 @@
         "preview": "vite preview"
     },
     "peerDependencies": {
+        "@date-io/moment": "^2.17.0",
         "@emotion/react": "^11.11.1",
         "@emotion/styled": "^11.11.0",
         "@mui/material": "^5.14.15",
@@ -59,6 +60,7 @@
         "redux-thunk": "^2.4.2"
     },
     "devDependencies": {
+        "@date-io/moment": "^2.17.0",
         "@emotion/react": "^11.11.1",
         "@emotion/styled": "^11.11.0",
         "@mui/lab": "^5.0.0-alpha.150",
