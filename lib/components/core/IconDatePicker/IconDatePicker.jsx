@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Icon, IconButton, DatePicker, Box } from '@mui/material';
+import { Icon, IconButton, Box } from '@mui/material';
+import DatePicker from '../DatePicker';
 import PropTypes from 'prop-types';
 
 function IconDatePicker(props) {
