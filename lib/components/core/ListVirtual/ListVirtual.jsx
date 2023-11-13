@@ -2,7 +2,7 @@
 
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import { Box } from '@mui/material';
 import {
     List,
     AutoSizer,
@@ -11,8 +11,6 @@ import {
     InfiniteLoader
 } from 'react-virtualized';
 import { validators, strings } from 'investira.sdk';
-
-import Style from './ListVirtual.module.scss';
 
 const STATUS_LOADING = 1;
 const STATUS_LOADED = 2;
@@ -158,15 +156,19 @@ class ListVirtual extends PureComponent {
     }
 
     render() {
-        const xClassRoot = classNames(Style.root, this.props.className, {
-            [Style.emptyList]: this.hasListData(this.props.list)
-        });
+        const sx = {
+            position: 'relative',
+            minHeight: '100%',
+            ...(this.hasListData(this.props.list) && {
+                height: '100%'
+            })
+        };
 
         //const xRowCount = this.props.list.length;
         const xRowCount = this.props.totalItens || this.props.list.length;
 
         return (
-            <div ref={this.listRoot} className={xClassRoot}>
+            <Box ref={this.listRoot} sx={sx} className={this.props.className}>
                 <InfiniteLoader
                     isRowLoaded={this.isRowLoaded}
                     loadMoreRows={this.loadMoreRows}
@@ -194,7 +196,7 @@ class ListVirtual extends PureComponent {
                         </AutoSizer>
                     )}
                 </InfiniteLoader>
-            </div>
+            </Box>
         );
     }
 }
