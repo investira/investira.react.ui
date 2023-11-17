@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from 'react';
-import { validators } from 'investira.sdk';
 import PropTypes from 'prop-types';
+import { validators } from 'investira.sdk';
 import { Box, Stack } from '@mui/material';
 import { CrudProvider, ContainerList, Search, ListState, ListVirtual, FilterBar } from '../';
 

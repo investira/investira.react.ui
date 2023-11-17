@@ -1,10 +1,8 @@
 import { memo, useRef, useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import Typography from '@mui/material/Typography';
-import Slider from '@mui/material/Slider';
-import { formats } from 'investira.sdk';
+import { Slider, Typography } from '@mui/material';
+import { formats, numbers } from 'investira.sdk';
 // import { useFormikContext } from "formik";
-import { numbers } from 'investira.sdk';
 
 const SliderField = memo(props => {
     // State

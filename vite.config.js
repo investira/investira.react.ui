@@ -55,7 +55,14 @@ export default defineConfig({
                 'redux-thunk',
                 'react/jsx-runtime',
                 'prop-types',
-                'react-transition-group'
+                'react-transition-group',
+                'swiper',
+                'swiper/react',
+                'swiper/modules',
+                'swiper/css',
+                'swiper/css/grid',
+                'swiper/css/navigation',
+                'swiper/css/pagination'
             ],
             output: {
                 globals: {
@@ -87,7 +94,14 @@ export default defineConfig({
                     'redux-thunk': 'reduxThunk',
                     'react/jsx-runtime': 'jsxRuntime',
                     'prop-types': 'PropTypes',
-                    'react-transition-group': 'reactTransitionGroup'
+                    'react-transition-group': 'reactTransitionGroup',
+                    swiper: 'Swiper',
+                    'swiper/react': 'swiperReact',
+                    'swiper/modules': 'swiperModules',
+                    'swiper/css': 'swiperCss',
+                    'swiper/css/grid': 'swiperCssGrid',
+                    'swiper/css/navigation': 'swiperCssNavigation',
+                    'swiper/css/pagination': 'swiperCssPagination'
                 }
             }
         }
