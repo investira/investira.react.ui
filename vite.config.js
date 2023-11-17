@@ -62,7 +62,8 @@ export default defineConfig({
                 'swiper/css',
                 'swiper/css/grid',
                 'swiper/css/navigation',
-                'swiper/css/pagination'
+                'swiper/css/pagination',
+                'typed.js'
             ],
             output: {
                 globals: {
@@ -101,7 +102,8 @@ export default defineConfig({
                     'swiper/css': 'swiperCss',
                     'swiper/css/grid': 'swiperCssGrid',
                     'swiper/css/navigation': 'swiperCssNavigation',
-                    'swiper/css/pagination': 'swiperCssPagination'
+                    'swiper/css/pagination': 'swiperCssPagination',
+                    'typed.js': 'typedJs'
                 }
             }
         }
