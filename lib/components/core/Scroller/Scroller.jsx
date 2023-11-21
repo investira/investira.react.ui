@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { PropTypes } from 'prop-types';
 import { Box } from '@mui/material';
-import { browsers } from '../../../lib';
+import { browsers } from '../../../utilities';
 
 function Scroller(props) {
     let scrollTimer = null;

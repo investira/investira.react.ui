@@ -6,11 +6,14 @@ import { createRequire } from 'module';
 
 import react from '@vitejs/plugin-react';
 import svgr from 'vite-plugin-svgr';
+import * as packageJson from './package.json';
 
 // https://vitejs.dev/config/
 export default defineConfig({
     plugins: [react(), svgr(), reactVirtualized()],
-
+    // optimizeDeps: {
+    //     force: true
+    // },
     build: {
         copyPublicDir: false,
         lib: {
@@ -18,7 +21,7 @@ export default defineConfig({
                 core: path.resolve(__dirname, 'lib/core.js'),
                 mui: path.resolve(__dirname, 'lib/mui.js'),
                 themes: path.resolve(__dirname, 'lib/themes.js'),
-                lib: path.resolve(__dirname, 'lib/lib.js')
+                utilities: path.resolve(__dirname, 'lib/utilities.js')
                 // charts: resolve(__dirname, "lib/charts.js"),
                 // reports: resolve(__dirname, "lib/reports.js"),
             },
@@ -26,46 +29,24 @@ export default defineConfig({
         },
         rollupOptions: {
             external: [
-                '@date-io/moment',
-                '@emotion/react',
-                '@emotion/styled',
-                '@mui/lab',
-                '@mui/material',
+                ...Object.keys(packageJson.peerDependencies),
                 '@mui/material/styles',
-                '@mui/x-date-pickers',
                 '@mui/x-date-pickers/AdapterMoment',
-                'classnames',
-                'formik',
-                'hammerjs',
-                'idb',
-                'investira.sdk',
-                'moment',
                 'moment/min/locales',
-                'react',
-                'react-dnd',
-                'react-dnd-html5-backend',
-                'react-dnd-touch-backend',
-                'react-dom',
-                'react-redux',
-                'redux',
-                'react-router-dom',
-                'react-virtualized',
-                'redux-persist',
-                'redux-persist-pouchdb',
-                'redux-thunk',
                 'react/jsx-runtime',
                 'prop-types',
                 'react-transition-group',
-                'swiper',
                 'swiper/react',
                 'swiper/modules',
                 'swiper/css',
                 'swiper/css/grid',
                 'swiper/css/navigation',
                 'swiper/css/pagination',
-                'typed.js'
+                'redux-persist/integration/react',
+                'redux-persist/lib/storage'
             ],
             output: {
+                //preserveModules: true,
                 globals: {
                     '@date-io/moment': 'dateIoMoment',
                     '@emotion/react': 'emotionReact',
@@ -76,6 +57,7 @@ export default defineConfig({
                     '@mui/x-date-pickers/AdapterMoment': 'xDatePickersAdapterMoment',
                     '@mui/x-date-pickers': 'xDatePickersMui',
                     classnames: 'classnames',
+                    'd3-scale': 'd3Scale',
                     formik: 'formik',
                     hammerjs: 'hammerjs',
                     idb: 'idb',
@@ -103,7 +85,9 @@ export default defineConfig({
                     'swiper/css/grid': 'swiperCssGrid',
                     'swiper/css/navigation': 'swiperCssNavigation',
                     'swiper/css/pagination': 'swiperCssPagination',
-                    'typed.js': 'typedJs'
+                    'typed.js': 'typedJs',
+                    'redux-persist/integration/react': 'reduxPersistReact',
+                    'redux-persist/lib/storage': 'reduxPersistStorage'
                 }
             }
         }

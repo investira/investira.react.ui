@@ -1,7 +1,7 @@
 import { useEffect, useState, forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import { validators } from 'investira.sdk';
-import { currency } from '../../../lib';
+import { currency } from '../../../utilities';
 
 const InputDecimal = forwardRef((props, ref) => {
     const [value, setValue] = useState(props.value);

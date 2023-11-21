@@ -1,5 +1,5 @@
 import { useEffect, useState, forwardRef } from 'react';
-import { currency } from '../../../lib';
+import { currency } from '../../../utilities';
 import { validators } from 'investira.sdk';
 import PropTypes from 'prop-types';
 

@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import PropTypes from 'prop-types';
-import { displays } from '../../../lib';
+import { displays } from '../../../utilities';
 import { Avatar } from '@mui/material';
 
 const Persona = memo(props => {

@@ -3,7 +3,7 @@ import { memo } from 'react';
 import { Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { validators } from 'investira.sdk';
-import { displays } from '../../../lib';
+import { displays } from '../../../utilities';
 
 const Root = styled(Box)(({ theme, highlight }) => {
     return {
