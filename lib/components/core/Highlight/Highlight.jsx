@@ -1,11 +1,13 @@
+/* eslint-disable no-unused-vars */
 import { PropTypes } from 'prop-types';
 import { memo } from 'react';
 import { Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { validators } from 'investira.sdk';
-import { displays } from '../../../utilities';
+import { displays, localStorages } from '@investira/utilities';
 
 const Root = styled(Box)(({ theme, highlight }) => {
+    // const xTESTEREMOVER = localStorages.getItem('teste');
     return {
         fontWeight: 'bold',
         ...(highlight && { color: theme.palette.primary.main })

@@ -1,3 +1,3 @@
-import { persistGateComponent as PersistGate } from '../../../utilities';
+import { persistGateComponent as PersistGate } from '@investira/utilities';
 
 export default PersistGate;

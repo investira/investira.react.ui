@@ -4,30 +4,41 @@ import path from 'path';
 import url from 'url';
 import { createRequire } from 'module';
 
+//https://www.npmjs.com/package/@rollup/plugin-terser
+
 import react from '@vitejs/plugin-react';
 import svgr from 'vite-plugin-svgr';
+import { nodeResolve } from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
+
 import * as packageJson from './package.json';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-    plugins: [react(), svgr(), reactVirtualized()],
+    plugins: [react(), svgr(), reactVirtualized(), nodeResolve(), commonjs()],
     // optimizeDeps: {
     //     force: true
     // },
+    resolve: {
+        alias: {
+            '@investira/utilities': path.resolve(__dirname, 'lib', 'utilities.js')
+        }
+    },
     build: {
         copyPublicDir: false,
         lib: {
             entry: {
-                core: path.resolve(__dirname, 'lib/core.js'),
-                mui: path.resolve(__dirname, 'lib/mui.js'),
-                themes: path.resolve(__dirname, 'lib/themes.js'),
-                utilities: path.resolve(__dirname, 'lib/utilities.js')
+                utilities: path.resolve(__dirname, 'lib', 'utilities.js'),
+                core: path.resolve(__dirname, 'lib', 'core.js'),
+                mui: path.resolve(__dirname, 'lib', 'mui.js'),
+                themes: path.resolve(__dirname, 'lib', 'themes.js')
                 // charts: resolve(__dirname, "lib/charts.js"),
                 // reports: resolve(__dirname, "lib/reports.js"),
             },
             formats: ['es', 'cjs']
         },
         rollupOptions: {
+            //context: 'window',
             external: [
                 ...Object.keys(packageJson.peerDependencies),
                 '@mui/material/styles',
@@ -46,7 +57,9 @@ export default defineConfig({
                 'redux-persist/lib/storage'
             ],
             output: {
-                //preserveModules: true,
+                //externalLiveBindings: true,
+                hoistTransitiveImports: false,
+                //manualChunks: {},
                 globals: {
                     '@date-io/moment': 'dateIoMoment',
                     '@emotion/react': 'emotionReact',
