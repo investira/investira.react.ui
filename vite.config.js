@@ -4,18 +4,17 @@ import path from 'path';
 import url from 'url';
 import { createRequire } from 'module';
 
-//https://www.npmjs.com/package/@rollup/plugin-terser
-
 import react from '@vitejs/plugin-react';
 import svgr from 'vite-plugin-svgr';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
+import terser from '@rollup/plugin-terser';
 
 import * as packageJson from './package.json';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-    plugins: [react(), svgr(), reactVirtualized(), nodeResolve(), commonjs()],
+    plugins: [react(), svgr(), reactVirtualized(), nodeResolve(), commonjs(), terser()],
     // optimizeDeps: {
     //     force: true
     // },
