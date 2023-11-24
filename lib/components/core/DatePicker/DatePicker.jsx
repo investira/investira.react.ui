@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import MomentUtils from '@date-io/moment';
-import { TextField } from '@mui/material';
+//import { TextField } from '@mui/material';
 import { DatePicker as MuiDatePicker } from '@mui/x-date-pickers';
 import { FriendlyDatePicker } from '../';
 
@@ -38,7 +38,8 @@ const DatePicker = props => {
                 refuse={/[^\d]+/gi}
                 cancelLabel="fechar"
                 sx={xPickerSx}
-                renderInput={params => <TextField {...params} />}
+                //renderInput={params => <TextField {...params} />}
+                slotProps={{ textField: {} }}
             />
         </>
     );
