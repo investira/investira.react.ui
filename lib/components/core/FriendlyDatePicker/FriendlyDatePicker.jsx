@@ -74,4 +74,6 @@ FriendlyDatePicker.defaultProps = {
     locale: 'pt-br'
 };
 
+FriendlyDatePicker.displayName = 'FriendlyDatePicker';
+
 export default FriendlyDatePicker;

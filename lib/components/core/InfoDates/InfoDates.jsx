@@ -94,4 +94,6 @@ InfoDates.propTypes = {
     color: PropTypes.oneOf(['textPrimary', 'textSecondary'])
 };
 
+InfoDates.displayName = 'InfoDates';
+
 export default InfoDates;

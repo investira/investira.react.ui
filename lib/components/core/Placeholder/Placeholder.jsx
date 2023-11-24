@@ -73,4 +73,6 @@ Placeholder.defaultProps = {
     radius: '4px'
 };
 
+Placeholder.displayName = 'Placeholder';
+
 export default Placeholder;

@@ -56,4 +56,6 @@ DatePicker.defaultProps = {
     locale: 'pt-br'
 };
 
+DatePicker.displayName = 'DatePicker';
+
 export default DatePicker;

@@ -4,7 +4,7 @@ import { validators } from 'investira.sdk';
 import { Chip, Menu, MenuItem, Icon, ListItemIcon, ListItemText, Box } from '@mui/material';
 import CrudContext from '../CrudContext';
 
-const SearchFilters = memo(props => {
+const ListFilter = memo(props => {
     const [anchorEl, setAnchorEl] = useState(null);
     const [selectedIndex, setSelected] = useState([]);
     const [filters, setFilters] = useState([]);
@@ -439,7 +439,7 @@ const SearchFilters = memo(props => {
     );
 });
 
-SearchFilters.propTypes = {
+ListFilter.propTypes = {
     filters: PropTypes.arrayOf(
         PropTypes.shape({
             label: PropTypes.string,
@@ -458,10 +458,10 @@ SearchFilters.propTypes = {
     onUpdateParams: PropTypes.func
 };
 
-SearchFilters.defaultProps = {
+ListFilter.defaultProps = {
     filters: {}
 };
 
-SearchFilters.displayName = 'SearchFilters';
+ListFilter.displayName = 'ListFilter';
 
-export default SearchFilters;
+export default ListFilter;

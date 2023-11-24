@@ -17,4 +17,6 @@ Body.propTypes = {
     children: PropTypes.element
 };
 
+Body.displayName = 'Body';
+
 export default Body;

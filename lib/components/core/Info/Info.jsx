@@ -93,4 +93,6 @@ Info.propTypes = {
     value: PropTypes.oneOfType([PropTypes.bool, PropTypes.string, PropTypes.number])
 };
 
+Info.displayName = 'Info';
+
 export default Info;

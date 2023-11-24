@@ -23,4 +23,6 @@ JsonTextFormated.defaultProps = {
     text: ''
 };
 
+JsonTextFormated.displayName = 'JsonTextFormated';
+
 export default JsonTextFormated;

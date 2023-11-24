@@ -4,7 +4,6 @@ import { validators } from 'investira.sdk';
 import PropTypes from 'prop-types';
 
 const InputCurrency = forwardRef((props, ref) => {
-    console.log(props);
     const [value, setValue] = useState(props.value);
 
     function formatTextValue(pValue = '', pDecimal = 2, pCurrency = 'BRL') {

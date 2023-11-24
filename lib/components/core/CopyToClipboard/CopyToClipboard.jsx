@@ -71,4 +71,6 @@ CopyToClipboard.propTypes = {
     value: PropTypes.string.isRequired
 };
 
+CopyToClipboard.displayName = 'CopyToClipboard';
+
 export default CopyToClipboard;

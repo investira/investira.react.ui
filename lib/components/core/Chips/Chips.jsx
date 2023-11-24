@@ -57,4 +57,6 @@ Chips.defaultProps = {
     variant: 'default'
 };
 
+Chips.displayName = 'Chips';
+
 export default Chips;

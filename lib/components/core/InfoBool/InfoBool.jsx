@@ -47,4 +47,6 @@ InfoBool.propTypes = {
     value: PropTypes.bool
 };
 
+InfoBool.displayName = 'InfoBool';
+
 export default InfoBool;

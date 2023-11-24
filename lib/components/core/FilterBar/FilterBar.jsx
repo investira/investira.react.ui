@@ -90,4 +90,6 @@ FilterBar.defaultProps = {
     margin: true
 };
 
+FilterBar.displayName = 'FilterBar';
+
 export default FilterBar;

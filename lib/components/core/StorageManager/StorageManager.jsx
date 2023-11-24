@@ -6,4 +6,6 @@ const StorageManager = ({ storage, store, children }) => {
     return children;
 };
 
+StorageManager.displayName = 'StorageManager';
+
 export default StorageManager;

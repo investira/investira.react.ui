@@ -202,4 +202,6 @@ InfiniteScroller.propTypes = {
     onPrevPage: PropTypes.func
 };
 
+InfiniteScroller.displayName = 'InfiniteScroller';
+
 export default InfiniteScroller;

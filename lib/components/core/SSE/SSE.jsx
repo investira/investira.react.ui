@@ -1,97 +1,98 @@
-import React, { PureComponent } from "react";
+import React, { PureComponent } from 'react';
 //import React, { useState, useEffect, useRef } from 'react';
-import PropTypes from "prop-types";
-import { validators } from "investira.sdk";
+import PropTypes from 'prop-types';
+import { validators } from 'investira.sdk';
 
-import { Typography, CenterInView } from "../";
+import { Typography, CenterInView } from '../';
 
 let eventSource = null;
 
 class SSE extends PureComponent {
-  constructor(props) {
-    super(props);
+    constructor(props) {
+        super(props);
 
-    this.state = {
-      data: props.initialValue,
-      error: false,
-    };
+        this.state = {
+            data: props.initialValue,
+            error: false
+        };
 
-    this.isMount = false;
-  }
-
-  updateResponseData = (pReponseData, pPrevData) => {
-    const xResponseDataParsed = JSON.parse(pReponseData);
-
-    let xResponseData = null;
-
-    if (validators.isArray(xResponseDataParsed)) {
-      xResponseData = [...pPrevData, ...xResponseDataParsed];
-    } else {
-      xResponseData = { ...pPrevData, ...xResponseDataParsed };
+        this.isMount = false;
     }
 
-    this.isMount &&
-      this.setState({
-        data: xResponseData,
-      });
-  };
+    updateResponseData = (pReponseData, pPrevData) => {
+        const xResponseDataParsed = JSON.parse(pReponseData);
 
-  updateError = (pValue) => {
-    this.isMount &&
-      this.setState({
-        error: pValue,
-      });
-  };
+        let xResponseData = null;
 
-  componentDidMount() {
-    this.isMount = true;
+        if (validators.isArray(xResponseDataParsed)) {
+            xResponseData = [...pPrevData, ...xResponseDataParsed];
+        } else {
+            xResponseData = { ...pPrevData, ...xResponseDataParsed };
+        }
 
-    eventSource = new EventSource(this.props.route);
-
-    eventSource.onmessage = (e) => {
-      this.updateResponseData(e.data, this.state.data);
+        this.isMount &&
+            this.setState({
+                data: xResponseData
+            });
     };
 
-    eventSource.onerror = (e) => {
-      !validators.isNull(e.data) && this.updateError(true);
+    updateError = pValue => {
+        this.isMount &&
+            this.setState({
+                error: pValue
+            });
     };
-  }
 
-  componentWillUnmount() {
-    this.isMount = false;
-    eventSource && eventSource.close();
-  }
+    componentDidMount() {
+        this.isMount = true;
 
-  render() {
-    if (this.state.error) {
-      return (
-        <CenterInView>
-          <Typography
-            color={"textSecondary"}
-            variant={"caption"}
-            align={"center"}
-            component={"p"}
-          >
-            Falha na conexão SSE
-          </Typography>
-        </CenterInView>
-      );
+        eventSource = new EventSource(this.props.route);
+
+        eventSource.onmessage = e => {
+            this.updateResponseData(e.data, this.state.data);
+        };
+
+        eventSource.onerror = e => {
+            !validators.isNull(e.data) && this.updateError(true);
+        };
     }
 
-    return React.cloneElement(React.Children.only(this.props.children), {
-      responseData: this.state.data,
-    });
-  }
+    componentWillUnmount() {
+        this.isMount = false;
+        eventSource && eventSource.close();
+    }
+
+    render() {
+        if (this.state.error) {
+            return (
+                <CenterInView>
+                    <Typography
+                        color={'textSecondary'}
+                        variant={'caption'}
+                        align={'center'}
+                        component={'p'}>
+                        Falha na conexão SSE
+                    </Typography>
+                </CenterInView>
+            );
+        }
+
+        return React.cloneElement(React.Children.only(this.props.children), {
+            responseData: this.state.data
+        });
+    }
 }
 
 SSE.propTypes = {
-  children: PropTypes.element.isRequired,
-  route: PropTypes.string.isRequired,
-  initialValue: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+    children: PropTypes.element.isRequired,
+    route: PropTypes.string.isRequired,
+    initialValue: PropTypes.oneOfType([PropTypes.object, PropTypes.array])
 };
 
 SSE.defaultProps = {
-  initialValue: {},
+    initialValue: {}
 };
+
+SSE.displayName = 'SSE';
 
 export default SSE;

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 import { renders } from 'investira.react.lib';
 import Basic from '../Basic';
 import { styled } from '@mui/material/styles';
@@ -100,5 +101,12 @@ function ContainerFeedback(props) {
         </>
     );
 }
+
+ContainerFeedback.propTypes = {
+    children: PropTypes.node,
+    centralized: PropTypes.bool
+};
+
+ContainerFeedback.displayName = 'ContainerFeedback';
 
 export default ContainerFeedback;

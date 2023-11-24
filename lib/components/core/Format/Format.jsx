@@ -66,4 +66,6 @@ Format.defaultProps = {
     status: 1
 };
 
+Format.displayName = 'Format';
+
 export default Format;

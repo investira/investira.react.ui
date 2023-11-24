@@ -105,4 +105,6 @@ NavDots.propTypes = {
     index: PropTypes.number
 };
 
+NavDots.displayName = 'NavDots';
+
 export default NavDots;

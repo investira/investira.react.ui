@@ -103,7 +103,7 @@ const HorizontalList = memo(props => {
         props.childProps.onClick && props.childProps.onClick(pData, pIndex);
     };
 
-    const handleScroll = e => {
+    const handleScroll = () => {
         window.clearTimeout(timeout);
 
         if (isScrolling || !isClicked) {

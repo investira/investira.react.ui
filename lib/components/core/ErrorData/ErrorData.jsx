@@ -46,4 +46,5 @@ ErrorData.propTypes = {
     error: PropTypes.string
 };
 
+ErrorData.displayName = 'ErrorData';
 export default ErrorData;

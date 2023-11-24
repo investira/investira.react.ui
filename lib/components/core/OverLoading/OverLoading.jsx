@@ -51,4 +51,6 @@ OverLoading.defaultProps = {
     size: 40
 };
 
+OverLoading.displayName = 'OverLoading';
+
 export default OverLoading;

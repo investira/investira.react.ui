@@ -225,4 +225,6 @@ ListVirtual.defaultProps = {
     minimumBatchSize: 40
 };
 
+ListVirtual.displayName = 'ListVirtual';
+
 export default ListVirtual;

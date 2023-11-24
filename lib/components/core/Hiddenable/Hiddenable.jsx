@@ -14,4 +14,6 @@ Hiddenable.defaultProps = {
     visible: true
 };
 
+Hiddenable.displayName = 'Hiddenable';
+
 export default Hiddenable;

@@ -50,4 +50,6 @@ Sticky.propTypes = {
     className: PropTypes.string
 };
 
+Sticky.displayName = 'Sticky';
+
 export default Sticky;

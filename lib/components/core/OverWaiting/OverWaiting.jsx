@@ -119,4 +119,6 @@ OverWaiting.defaultProps = {
     cancelable: true
 };
 
+OverWaiting.displayName = 'OverWaiting';
+
 export default OverWaiting;

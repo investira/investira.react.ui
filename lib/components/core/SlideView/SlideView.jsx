@@ -433,4 +433,6 @@ SlideView.defaultProps = {
     step: 0
 };
 
+SlideView.displayName = 'SlideView';
+
 export default SlideView;

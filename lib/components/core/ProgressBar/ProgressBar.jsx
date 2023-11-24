@@ -79,4 +79,6 @@ ProgressBar.defaultProps = {
     animate: 'progress'
 };
 
+ProgressBar.displayName = 'ProgressBar';
+
 export default ProgressBar;

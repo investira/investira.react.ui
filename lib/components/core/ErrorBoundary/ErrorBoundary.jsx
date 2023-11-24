@@ -49,4 +49,6 @@ ErrorBoundary.propTypes = {
     children: PropTypes.element
 };
 
+ErrorBoundary.displayName = 'ErrorBoundary';
+
 export default ErrorBoundary;

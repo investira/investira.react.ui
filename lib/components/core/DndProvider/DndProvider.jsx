@@ -9,4 +9,6 @@ const DndProvider = props => {
     return <WarpDndProvider backend={backendForDND} {...props} />;
 };
 
+DndProvider.displayName = 'DndProvider';
+
 export default DndProvider;

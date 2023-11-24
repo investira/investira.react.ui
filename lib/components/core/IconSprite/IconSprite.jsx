@@ -3,4 +3,6 @@ const IconSprite = () => {
     return <Sprite />;
 };
 
+IconSprite.displayName = 'IconSprite';
+
 export default IconSprite;

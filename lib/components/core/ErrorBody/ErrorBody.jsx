@@ -58,4 +58,6 @@ ErrorBody.propTypes = {
     d: PropTypes.string
 };
 
+ErrorBody.displayName = 'ErrorBody';
+
 export default ErrorBody;

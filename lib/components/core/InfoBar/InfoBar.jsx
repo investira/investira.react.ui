@@ -61,4 +61,6 @@ InfoBar.propTypes = {
     children: PropTypes.node
 };
 
+InfoBar.displayName = 'InfoBar';
+
 export default InfoBar;

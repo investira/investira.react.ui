@@ -44,4 +44,6 @@ IconDatePicker.propTypes = {
     id: PropTypes.string
 };
 
+IconDatePicker.displayName = 'IconDatePicker';
+
 export default IconDatePicker;

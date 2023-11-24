@@ -117,4 +117,6 @@ Success.defaultProps = {
     fill: 'none'
 };
 
+Success.display = 'Success';
+
 export default Success;

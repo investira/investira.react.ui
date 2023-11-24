@@ -186,4 +186,6 @@ SearchList.propTypes = {
     defaultData: PropTypes.object
 };
 
+SearchList.displayName = 'SearchList';
+
 export default SearchList;

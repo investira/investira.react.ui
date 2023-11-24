@@ -32,4 +32,6 @@ Basic.defaultProps = {
     tag: 'div'
 };
 
+Basic.displayName = 'Basic';
+
 export default Basic;
