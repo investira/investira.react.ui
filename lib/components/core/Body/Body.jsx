@@ -14,7 +14,7 @@ const Body = props => {
 };
 
 Body.propTypes = {
-    children: PropTypes.element
+    children: PropTypes.node
 };
 
 Body.displayName = 'Body';
