@@ -22,6 +22,7 @@ export default defineConfig({
         alias: {
             '@investira/utilities': path.resolve(__dirname, 'lib', 'utilities.js')
         }
+        //dedupe: [...Object.keys(packageJson.peerDependencies)]
     },
     build: {
         copyPublicDir: false,
@@ -59,6 +60,7 @@ export default defineConfig({
                 //externalLiveBindings: true,
                 hoistTransitiveImports: false,
                 //manualChunks: {},
+                generatedCode: 'es2015', //es5
                 globals: {
                     '@date-io/moment': 'dateIoMoment',
                     '@emotion/react': 'emotionReact',
