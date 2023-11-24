@@ -1,4 +1,3 @@
-//import { TextField } from '@mui/material';
 import { DatePicker as MuiDatePicker } from '@mui/x-date-pickers';
 
 const KeyboardDatePicker = props => {
@@ -7,7 +6,6 @@ const KeyboardDatePicker = props => {
             {...props}
             refuse={/[^\d]+/gi}
             cancelLabel="fechar"
-            //renderInput={(params) => <TextField {...params} />}
             slotProps={{ textField: {} }}
         />
     );
