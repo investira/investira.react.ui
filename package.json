@@ -111,5 +111,9 @@
         "typed.js": "^2.1.0",
         "vite": "^4.4.5",
         "vite-plugin-svgr": "^4.1.0"
+    },
+    "dependencies": {
+        "events": "^3.3.0",
+        "process": "^0.11.10"
     }
 }
