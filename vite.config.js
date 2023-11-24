@@ -20,7 +20,8 @@ export default defineConfig({
     // },
     resolve: {
         alias: {
-            '@investira/utilities': path.resolve(__dirname, 'lib', 'utilities.js')
+            '@investira/utilities': path.resolve(__dirname, 'lib', 'utilities.js'),
+            '@utils': path.resolve(__dirname, 'lib', 'components', 'utils', 'index.js')
         }
         //dedupe: [...Object.keys(packageJson.peerDependencies)]
     },
@@ -31,8 +32,8 @@ export default defineConfig({
                 utilities: path.resolve(__dirname, 'lib', 'utilities.js'),
                 core: path.resolve(__dirname, 'lib', 'core.js'),
                 mui: path.resolve(__dirname, 'lib', 'mui.js'),
-                themes: path.resolve(__dirname, 'lib', 'themes.js')
-                // charts: resolve(__dirname, "lib/charts.js"),
+                themes: path.resolve(__dirname, 'lib', 'themes.js'),
+                charts: path.resolve(__dirname, 'lib', 'charts.js')
                 // reports: resolve(__dirname, "lib/reports.js"),
             },
             formats: ['es', 'cjs']
@@ -84,6 +85,7 @@ export default defineConfig({
                     'react-dnd-touch-backend': 'reactDndTouchBackend',
                     'react-dom': 'ReactDOM',
                     'react-virtualized': 'reactVirtualized',
+                    recharts: 'recharts',
                     redux: 'redux',
                     'react-router-dom': 'reactRouterDom',
                     'redux-persist': 'reduxPersist',
