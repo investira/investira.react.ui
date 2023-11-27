@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import { renders } from 'investira.react.lib';
-import Basic from '../Basic';
+import { renders } from '@investira/utilities';
 import { styled } from '@mui/material/styles';
-import { Box } from '../';
+import { Box } from '@mui/material';
+import { Basic } from '../';
 
 const StyledBasic = styled(Basic)({
     alignItems: 'center',

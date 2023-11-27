@@ -1,11 +1,13 @@
-import { PureComponent } from 'react';
+import { useRef, useEffect } from 'react';
 import Typed from 'typed.js';
 import PropTypes from 'prop-types';
 
-class Typedy extends PureComponent {
-    componentDidMount() {
-        const { strings, typeSpeed, loop, backSpeed, backDelay, smartBackspace } = this.props;
+function Typedy(props) {
+    const xElemRef = useRef();
+    const xTyped = useRef();
 
+    useEffect(() => {
+        const { strings, typeSpeed, loop, backSpeed, backDelay, smartBackspace } = props;
         const xOptions = {
             strings: strings,
             typeSpeed: typeSpeed,
@@ -15,21 +17,14 @@ class Typedy extends PureComponent {
             smartBackspace: smartBackspace
         };
 
-        this.typed = new Typed(this.elem, xOptions);
-    }
+        xTyped.current = new Typed(xElemRef.current, xOptions);
 
-    componentWillUnmount() {
-        this.typed.destroy();
-    }
+        return () => {
+            xTyped.current.destroy();
+        };
+    }, [props]);
 
-    render() {
-        return (
-            <span
-                ref={xElem => {
-                    this.elem = xElem;
-                }}></span>
-        );
-    }
+    return <span ref={xElemRef}></span>;
 }
 
 Typedy.propTypes = {

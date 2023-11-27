@@ -22,17 +22,17 @@ export default defineConfig({
         alias: {
             '@investira/utilities': path.resolve(__dirname, 'lib', 'utilities.js'),
             '@utils': path.resolve(__dirname, 'lib', 'components', 'utils', 'index.js')
-        }
-        //dedupe: [...Object.keys(packageJson.peerDependencies)]
+        },
+        dedupe: [...Object.keys(packageJson.peerDependencies)]
     },
     build: {
         copyPublicDir: false,
         lib: {
             entry: {
-                utilities: path.resolve(__dirname, 'lib', 'utilities.js'),
-                core: path.resolve(__dirname, 'lib', 'core.js'),
-                mui: path.resolve(__dirname, 'lib', 'mui.js'),
                 themes: path.resolve(__dirname, 'lib', 'themes.js'),
+                utilities: path.resolve(__dirname, 'lib', 'utilities.js'),
+                mui: path.resolve(__dirname, 'lib', 'mui.js'),
+                core: path.resolve(__dirname, 'lib', 'core.js'),
                 charts: path.resolve(__dirname, 'lib', 'charts.js'),
                 reports: path.resolve(__dirname, 'lib', 'reports.js')
             },
@@ -44,6 +44,8 @@ export default defineConfig({
                 ...Object.keys(packageJson.peerDependencies),
                 '@mui/material/styles',
                 '@mui/x-date-pickers/AdapterMoment',
+                '@mui/x-date-pickers/AdapterDateFns',
+                'date-fns/locale/pt-BR',
                 'moment/min/locales',
                 'react/jsx-runtime',
                 'prop-types',
@@ -60,7 +62,7 @@ export default defineConfig({
             output: {
                 //externalLiveBindings: true,
                 hoistTransitiveImports: false,
-                //manualChunks: {},
+                manualChunks: {},
                 generatedCode: 'es2015', //es5
                 globals: {
                     '@date-io/moment': 'dateIoMoment',
@@ -70,6 +72,8 @@ export default defineConfig({
                     '@mui/material': 'MaterialUI',
                     '@mui/material/styles': 'MaterialUIStyles',
                     '@mui/x-date-pickers/AdapterMoment': 'xDatePickersAdapterMoment',
+                    '@mui/x-date-pickers/AdapterDateFns': 'xDatePickersAdapterDateFns',
+                    'date-fns/locale/pt-BR': 'dateFnsLocalePtBr',
                     '@mui/x-date-pickers': 'xDatePickersMui',
                     classnames: 'classnames',
                     'd3-scale': 'd3Scale',

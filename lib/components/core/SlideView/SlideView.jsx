@@ -7,6 +7,8 @@ import { Box, IconButton } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import Style from './SlideView.module.scss';
 
+//TODO: Encontrar uam solução para o style
+
 // const DotButton = styled(ButtonBase)(({ theme }) => ({
 //     display: 'inline-block',
 //     margin: '8px',
@@ -174,7 +176,7 @@ function SlideView(props) {
             let xMoveIndex = Math.max(0, Math.min(pMoveIndex, slideCount - 1));
             let xPercent = pPercent || 0;
             let xClassName = slideWrapRef.current.className;
-            console.log(slideWrapRef.current);
+
             if (pAnimate) {
                 if (xClassName.indexOf(Style.swapped) === -1) {
                     slideWrapRef.current.className += ` ${Style.swapped}`;
