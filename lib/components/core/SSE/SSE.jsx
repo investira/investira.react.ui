@@ -1,25 +1,16 @@
-import React, { PureComponent } from 'react';
-//import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
+import { Typography } from '@mui/material';
 import { validators } from 'investira.sdk';
+import { CenterInView } from '../';
+function SSE(props) {
+    let eventSource = null;
+    const [data, setData] = useState(props.initialValue);
+    const [error, setError] = useState(false);
 
-import { Typography, CenterInView } from '../';
+    const isMount = useRef(false);
 
-let eventSource = null;
-
-class SSE extends PureComponent {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            data: props.initialValue,
-            error: false
-        };
-
-        this.isMount = false;
-    }
-
-    updateResponseData = (pReponseData, pPrevData) => {
+    const updateResponseData = (pReponseData, pPrevData) => {
         const xResponseDataParsed = JSON.parse(pReponseData);
 
         let xResponseData = null;
@@ -30,57 +21,47 @@ class SSE extends PureComponent {
             xResponseData = { ...pPrevData, ...xResponseDataParsed };
         }
 
-        this.isMount &&
-            this.setState({
-                data: xResponseData
-            });
+        isMount.current && setData(xResponseData);
     };
 
-    updateError = pValue => {
-        this.isMount &&
-            this.setState({
-                error: pValue
-            });
+    const updateError = pValue => {
+        isMount.current && setError(pValue);
     };
 
-    componentDidMount() {
-        this.isMount = true;
-
-        eventSource = new EventSource(this.props.route);
-
+    useEffect(() => {
+        isMount.current = true;
+        eventSource = new EventSource(props.route);
         eventSource.onmessage = e => {
-            this.updateResponseData(e.data, this.state.data);
+            updateResponseData(e.data, data);
         };
 
         eventSource.onerror = e => {
-            !validators.isNull(e.data) && this.updateError(true);
+            !validators.isNull(e.data) && updateError(true);
         };
+
+        return () => {
+            isMount.current = false;
+            eventSource && eventSource.close();
+        };
+    }, []);
+
+    if (error) {
+        return (
+            <CenterInView>
+                <Typography
+                    color={'textSecondary'}
+                    variant={'caption'}
+                    align={'center'}
+                    component={'p'}>
+                    Falha na conexão SSE
+                </Typography>
+            </CenterInView>
+        );
     }
 
-    componentWillUnmount() {
-        this.isMount = false;
-        eventSource && eventSource.close();
-    }
-
-    render() {
-        if (this.state.error) {
-            return (
-                <CenterInView>
-                    <Typography
-                        color={'textSecondary'}
-                        variant={'caption'}
-                        align={'center'}
-                        component={'p'}>
-                        Falha na conexão SSE
-                    </Typography>
-                </CenterInView>
-            );
-        }
-
-        return React.cloneElement(React.Children.only(this.props.children), {
-            responseData: this.state.data
-        });
-    }
+    return React.cloneElement(React.Children.only(props.children), {
+        responseData: data
+    });
 }
 
 SSE.propTypes = {
