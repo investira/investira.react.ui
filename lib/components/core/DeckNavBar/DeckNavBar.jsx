@@ -1,9 +1,8 @@
 import { memo } from 'react';
 import PropTypes from 'prop-types';
 import { validators } from 'investira.sdk';
-
-import { NavBar, IconButton, Icon } from '@mui/material';
-import DeckContext from '../DeckContext';
+import { IconButton } from '@mui/material';
+import { NavBar, Icon, DeckContext } from '../';
 
 const DeckNavBar = memo(props => {
     return (

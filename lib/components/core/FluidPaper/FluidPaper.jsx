@@ -39,4 +39,6 @@ FluidPaper.propTypes = {
     onClick: PropTypes.func
 };
 
+FluidPaper.displayName = 'FluidPaper';
+
 export default FluidPaper;

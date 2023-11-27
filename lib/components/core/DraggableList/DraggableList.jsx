@@ -2,7 +2,7 @@ import { memo, useEffect, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { List, ListSubheader } from '@mui/material';
 import { objects, arrays, validators } from 'investira.sdk';
-import { sortByAttr } from '../../../utils/helpers';
+import { sortByAttr } from '../../utils/helpers';
 import DraggableItem from './DraggableItem';
 
 const DraggableList = memo(props => {

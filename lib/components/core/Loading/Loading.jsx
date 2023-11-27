@@ -36,4 +36,6 @@ Loading.defaultProps = {
     size: 40
 };
 
+Loading.displayName = 'Loading';
+
 export default Loading;

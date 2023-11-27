@@ -1,80 +1,63 @@
-import React, { useEffect, useState, forwardRef } from "react";
-import { currency } from "investira.react.lib";
-import { validators } from "investira.sdk";
-import PropTypes from "prop-types";
+import { useEffect, useState, forwardRef } from 'react';
+import PropTypes from 'prop-types';
+import { validators } from 'investira.sdk';
+import { currency } from '@investira/utilities';
 
 const InputDecimal = forwardRef((props, ref) => {
-  const [value, setValue] = useState(props.value);
+    const [value, setValue] = useState(props.value);
 
-  function formatTextValue(
-    pValue = "",
-    pDecimal = 4,
-    pLocale = "pt-BR",
-    pSeparator = ","
-  ) {
-    const xValue = validators.isNumber(pValue)
-      ? pValue.toFixed(pDecimal)
-      : pValue;
+    function formatTextValue(pValue = '', pDecimal = 4, pLocale = 'pt-BR', pSeparator = ',') {
+        const xValue = validators.isNumber(pValue) ? pValue.toFixed(pDecimal) : pValue;
 
-    const xResult = currency.toDecimal(
-      xValue.toString(),
-      pDecimal,
-      pLocale,
-      pSeparator
-    );
-    return xResult;
-  }
-
-  function handleChange(pEvent) {
-    pEvent.persist();
-    const xValueAsCurrency = formatTextValue(
-      pEvent.target.value,
-      props.decimal
-    );
-
-    setValue(xValueAsCurrency);
-
-    if (props.onChange) {
-      props.onChange(
-        pEvent,
-        currency.currencyToNumber(xValueAsCurrency, ".", props.decimal)
-      );
+        const xResult = currency.toDecimal(xValue.toString(), pDecimal, pLocale, pSeparator);
+        return xResult;
     }
-  }
 
-  useEffect(() => {
-    if (formatTextValue(props.value) !== value) {
-      setValue(formatTextValue(props.value));
+    function handleChange(pEvent) {
+        pEvent.persist();
+        const xValueAsCurrency = formatTextValue(pEvent.target.value, props.decimal);
+
+        setValue(xValueAsCurrency);
+
+        if (props.onChange) {
+            props.onChange(pEvent, currency.currencyToNumber(xValueAsCurrency, '.', props.decimal));
+        }
     }
-  }, [props.value, value]);
 
-  const { ...inputProps } = props;
+    useEffect(() => {
+        if (formatTextValue(props.value) !== value) {
+            setValue(formatTextValue(props.value));
+        }
+    }, [props.value, value]);
 
-  return (
-    <input
-      ref={ref}
-      {...inputProps}
-      type="text"
-      pattern="\d*"
-      data-numeric-input
-      value={value || props.value}
-      onChange={handleChange}
-    />
-  );
+    const { ...inputProps } = props;
+
+    return (
+        <input
+            ref={ref}
+            {...inputProps}
+            type="text"
+            pattern="\d*"
+            data-numeric-input
+            value={value || props.value}
+            onChange={handleChange}
+        />
+    );
 });
 
 InputDecimal.propTypes = {
-  onChange: PropTypes.func,
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  currency: PropTypes.string,
-  separator: PropTypes.oneOf([".", ","]),
+    onChange: PropTypes.func,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    currency: PropTypes.string,
+    separator: PropTypes.oneOf(['.', ',']),
+    decimal: PropTypes.number
 };
 
 InputDecimal.defaultProps = {
-  separator: ",",
-  decimal: 4,
+    separator: ',',
+    decimal: 4
 };
 
-InputDecimal.displayName = "InputDecimal";
+InputDecimal.displayName = 'InputDecimal';
 
 export default InputDecimal;

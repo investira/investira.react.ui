@@ -108,4 +108,6 @@ ContentList.defaultProps = {
     itemProps: {}
 };
 
+ContentList.displayName = 'ContentList';
+
 export default ContentList;

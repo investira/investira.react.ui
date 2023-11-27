@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Icon, IconButton, DatePicker, Box } from '@mui/material';
+import { IconButton, Box } from '@mui/material';
+import { Icon, DatePicker } from '../';
 import PropTypes from 'prop-types';
 
 function IconDatePicker(props) {
@@ -18,7 +19,7 @@ function IconDatePicker(props) {
             <IconButton onClick={() => setIsOpen(true)} color={'primary'}>
                 <Icon color={'primary'} iconName={'calendar'} />
             </IconButton>
-            <Box sx={{ display: 'none' }}>
+            <Box sx={{ width: 0, height: 0, visibility: 'hidden' }}>
                 <DatePicker
                     id={`datepicker_${id}`}
                     format={'DD/MMM/YYYY'}
@@ -42,5 +43,7 @@ IconDatePicker.propTypes = {
     onChange: PropTypes.func,
     id: PropTypes.string
 };
+
+IconDatePicker.displayName = 'IconDatePicker';
 
 export default IconDatePicker;

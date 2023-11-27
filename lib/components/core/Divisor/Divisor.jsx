@@ -25,4 +25,6 @@ Divisor.propTypes = {
     direction: PropTypes.oneOf(['vertical', 'horizontal']).isRequired
 };
 
+Divisor.displayName = 'Divisor';
+
 export default Divisor;
