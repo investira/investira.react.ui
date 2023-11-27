@@ -22,17 +22,17 @@ export default defineConfig({
         alias: {
             '@investira/utilities': path.resolve(__dirname, 'lib', 'utilities.js'),
             '@utils': path.resolve(__dirname, 'lib', 'components', 'utils', 'index.js')
-        }
-        //dedupe: [...Object.keys(packageJson.peerDependencies)]
+        },
+        dedupe: [...Object.keys(packageJson.peerDependencies)]
     },
     build: {
         copyPublicDir: false,
         lib: {
             entry: {
-                utilities: path.resolve(__dirname, 'lib', 'utilities.js'),
-                core: path.resolve(__dirname, 'lib', 'core.js'),
-                mui: path.resolve(__dirname, 'lib', 'mui.js'),
                 themes: path.resolve(__dirname, 'lib', 'themes.js'),
+                utilities: path.resolve(__dirname, 'lib', 'utilities.js'),
+                mui: path.resolve(__dirname, 'lib', 'mui.js'),
+                core: path.resolve(__dirname, 'lib', 'core.js'),
                 charts: path.resolve(__dirname, 'lib', 'charts.js'),
                 reports: path.resolve(__dirname, 'lib', 'reports.js')
             },
@@ -60,7 +60,7 @@ export default defineConfig({
             output: {
                 //externalLiveBindings: true,
                 hoistTransitiveImports: false,
-                //manualChunks: {},
+                manualChunks: {},
                 generatedCode: 'es2015', //es5
                 globals: {
                     '@date-io/moment': 'dateIoMoment',
