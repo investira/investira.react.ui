@@ -22,7 +22,7 @@ function Typedy(props) {
         return () => {
             xTyped.current.destroy();
         };
-    }, []);
+    }, [props]);
 
     return <span ref={xElemRef}></span>;
 }
