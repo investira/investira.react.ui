@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import { formats } from 'investira.sdk';
 import { InfoCard } from '../';
-import utils from '../../utils';
+import { calc } from '@utils';
 
 const SomaCard = props => {
-    const calculatedValue = utils.calc.somaAttr(props.data, props.options);
+    const calculatedValue = calc.somaAttr(props.data, props.options);
     const formatedValue = formats.formatNumber(
         calculatedValue,
         props.decimais,

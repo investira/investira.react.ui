@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import PropTypes from 'prop-types';
 import { Typography, TableCell, TableHead, TableRow } from '@mui/material';
-import utils from '../../utils';
+import { tables } from '@utils';
 const TableHeader = memo(props => {
     return (
         <TableHead>
@@ -12,7 +12,7 @@ const TableHeader = memo(props => {
                             variant="head"
                             key={`col-${xIndex}`}
                             sx={{ verticalAlign: 'bottom' }}
-                            align={utils.tables.aligntCell(xCol.type)}>
+                            align={tables.aligntCell(xCol.type)}>
                             <Typography variant="caption" sx={{ fontWeight: 600 }}>
                                 {xCol.label}
                             </Typography>

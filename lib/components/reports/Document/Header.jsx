@@ -2,7 +2,7 @@ import { memo } from 'react';
 import PropTypes from 'prop-types';
 import { dates, formats } from 'investira.sdk';
 import { styled } from '@mui/material/styles';
-import { Stack, Typography } from '../wrappers';
+import { Stack, Typography } from '@mui/material';
 
 const Head = styled(Stack)(() => ({
     justifyContent: 'flex-end',

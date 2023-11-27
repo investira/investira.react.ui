@@ -33,8 +33,8 @@ export default defineConfig({
                 core: path.resolve(__dirname, 'lib', 'core.js'),
                 mui: path.resolve(__dirname, 'lib', 'mui.js'),
                 themes: path.resolve(__dirname, 'lib', 'themes.js'),
-                charts: path.resolve(__dirname, 'lib', 'charts.js')
-                // reports: resolve(__dirname, "lib/reports.js"),
+                charts: path.resolve(__dirname, 'lib', 'charts.js'),
+                reports: path.resolve(__dirname, 'lib', 'reports.js')
             },
             formats: ['es', 'cjs']
         },

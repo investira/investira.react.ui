@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { Stack } from '../wrappers';
+import { Stack } from '@mui/material';
 const Footer = memo(() => {
     return (
         <Stack

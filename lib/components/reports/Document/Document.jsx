@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import PropTypes from 'prop-types';
+import { Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { Box } from '../wrappers';
 import DocumentHead from './DocumentHead';
 import DocumentFooter from './DocumentFooter';
 import DocumentContent from './DocumentContent';

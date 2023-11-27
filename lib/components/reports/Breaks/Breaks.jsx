@@ -2,7 +2,7 @@ import { memo } from 'react';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import { Typography, TableHead, TableCell, TableRow, TableBody } from '@mui/material';
-import utils from '../../utils';
+import { tables } from '@utils';
 
 const Breaks = memo(props => {
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -48,10 +48,7 @@ const Breaks = memo(props => {
                                 return (
                                     <TableCell key={colIndex} align="right">
                                         <Typography variant="caption" sx={{ fontWeight: 600 }}>
-                                            {utils.tables.formatCell(
-                                                props.totalData[col.key],
-                                                'number'
-                                            )}
+                                            {tables.formatCell(props.totalData[col.key], 'number')}
                                         </Typography>
                                     </TableCell>
                                 );

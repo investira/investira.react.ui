@@ -2,7 +2,7 @@ import { memo } from 'react';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import { TableBody, TableCell, TableRow, Typography } from '@mui/material';
-import utils from '../../utils';
+import { tables } from '@utils';
 
 const Ativos = memo(props => {
     const StyledTableRow = styled(TableRow)(({ theme }) => ({
@@ -28,9 +28,9 @@ const Ativos = memo(props => {
                                             ? { paddingLeft: (props.indent * 4) / 4 }
                                             : {}
                                     }
-                                    align={utils.tables.aligntCell(col.type)}>
+                                    align={tables.aligntCell(col.type)}>
                                     <Typography variant="caption" noWrap>
-                                        {utils.tables.formatCell(row[col.key], col.type)}
+                                        {tables.formatCell(row[col.key], col.type)}
                                     </Typography>
                                 </TableCell>
                             );

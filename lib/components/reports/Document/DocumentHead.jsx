@@ -1,6 +1,6 @@
 import { memo } from 'react';
+import { Box } from '@mui/material';
 import HeaderSpace from './HeaderSpace';
-import { Box } from '../wrappers';
 
 const DocumentHead = memo(() => {
     return (

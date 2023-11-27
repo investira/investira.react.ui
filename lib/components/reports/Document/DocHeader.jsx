@@ -1,11 +1,11 @@
 import { memo } from 'react';
 import PropTypes from 'prop-types';
 import { dates, formats } from 'investira.sdk';
-import { styled } from '@mui/material/styles';
 import { Stack, Typography, Divider } from '@mui/material';
+import { styled } from '@mui/material/styles';
 
-import iconCalendar from '../../assets/images/1385_calendar.svg';
-import iconLocation from '../../assets/images/1220_location.svg';
+import iconCalendar from '../../../assets/images/1385_calendar.svg';
+import iconLocation from '../../../assets/images/1220_location.svg';
 
 const Head = styled(Stack)(() => ({
     justifyContent: 'flex-end',
