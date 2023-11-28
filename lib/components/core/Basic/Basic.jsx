@@ -3,7 +3,7 @@ import { validators } from 'investira.sdk';
 
 export const Basic = props => {
     // eslint-disable-next-line no-unused-vars
-    const { id, idSuffix, tag, ...xPassThruAttrs } = props;
+    const { id, idSuffix, tag = 'div', ...xPassThruAttrs } = props;
 
     let Tag = props.tag;
     let xId = null;
@@ -26,10 +26,6 @@ Basic.propTypes = {
     idSuffix: PropTypes.string,
     tag: PropTypes.string,
     children: PropTypes.node
-};
-
-Basic.defaultProps = {
-    tag: 'div'
 };
 
 Basic.displayName = 'Basic';
