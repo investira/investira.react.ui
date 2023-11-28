@@ -8,7 +8,7 @@ import react from '@vitejs/plugin-react';
 import svgr from 'vite-plugin-svgr';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
-//import terser from '@rollup/plugin-terser';
+//import { nodePolyfills } from 'vite-plugin-node-polyfills';
 import preserveDirectives from 'rollup-plugin-preserve-directives';
 
 import * as packageJson from './package.json';
@@ -19,7 +19,20 @@ import * as packageJson from './package.json';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-    plugins: [react(), svgr(), reactVirtualized(), nodeResolve(), commonjs(), preserveDirectives()],
+    plugins: [
+        react(),
+        svgr(),
+        reactVirtualized(),
+        nodeResolve(),
+        commonjs(),
+        preserveDirectives()
+        // nodePolyfills({
+        //     include: ['fs'],
+        //     overrides: {
+        //         fs: 'memfs'
+        //     }
+        // })
+    ],
     // optimizeDeps: {
     //     force: true
     // },
@@ -71,7 +84,7 @@ export default defineConfig({
                 generatedCode: 'es2015', //es5
                 preserveModules: true,
                 banner: chunkInfo => {
-                    if (chunkInfo.name === 'core') {
+                    if (['core', 'charts', 'reports', 'utilities'].includes(chunkInfo.name)) {
                         return `"use client"`;
                     }
                     return '';
@@ -119,7 +132,9 @@ export default defineConfig({
                     'swiper/css/pagination': 'swiperCssPagination',
                     'typed.js': 'typedJs',
                     'redux-persist/integration/react': 'reduxPersistReact',
-                    'redux-persist/lib/storage': 'reduxPersistStorage'
+                    'redux-persist/lib/storage': 'reduxPersistStorage',
+                    'redux-persist/lib/storage/createWebStorage':
+                        'reduxPersistStorageCreateWebStorage'
                 }
             }
         }
