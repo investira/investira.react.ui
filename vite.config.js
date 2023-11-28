@@ -8,13 +8,18 @@ import react from '@vitejs/plugin-react';
 import svgr from 'vite-plugin-svgr';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
-import terser from '@rollup/plugin-terser';
+//import terser from '@rollup/plugin-terser';
+import preserveDirectives from 'rollup-plugin-preserve-directives';
 
 import * as packageJson from './package.json';
 
+// const MODULE_PATHES_WHICH_USE_CLIENT_DIRECTIVE_SHOULD_BE_ADDED = [
+//     ...Object.keys(packageJson.peerDependencies)
+// ];
+
 // https://vitejs.dev/config/
 export default defineConfig({
-    plugins: [react(), svgr(), reactVirtualized(), nodeResolve(), commonjs(), terser()],
+    plugins: [react(), svgr(), reactVirtualized(), nodeResolve(), commonjs(), preserveDirectives()],
     // optimizeDeps: {
     //     force: true
     // },
@@ -62,8 +67,19 @@ export default defineConfig({
             output: {
                 //externalLiveBindings: true,
                 hoistTransitiveImports: false,
-                manualChunks: {},
+                //manualChunks: {},
                 generatedCode: 'es2015', //es5
+                preserveModules: true,
+                // banner: chunkInfo => {
+                //     if (
+                //         MODULE_PATHES_WHICH_USE_CLIENT_DIRECTIVE_SHOULD_BE_ADDED.find(modulePath =>
+                //             chunkInfo.facadeModuleId?.endsWith(modulePath)
+                //         )
+                //     ) {
+                //         return `"use client"`;
+                //     }
+                //     return '';
+                // },
                 globals: {
                     '@date-io/moment': 'dateIoMoment',
                     '@emotion/react': 'emotionReact',
