@@ -70,16 +70,12 @@ export default defineConfig({
                 //manualChunks: {},
                 generatedCode: 'es2015', //es5
                 preserveModules: true,
-                // banner: chunkInfo => {
-                //     if (
-                //         MODULE_PATHES_WHICH_USE_CLIENT_DIRECTIVE_SHOULD_BE_ADDED.find(modulePath =>
-                //             chunkInfo.facadeModuleId?.endsWith(modulePath)
-                //         )
-                //     ) {
-                //         return `"use client"`;
-                //     }
-                //     return '';
-                // },
+                banner: chunkInfo => {
+                    if (chunkInfo.name === 'core') {
+                        return `"use client"`;
+                    }
+                    return '';
+                },
                 globals: {
                     '@date-io/moment': 'dateIoMoment',
                     '@emotion/react': 'emotionReact',
