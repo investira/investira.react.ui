@@ -7,7 +7,7 @@ import { Box, IconButton } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import Style from './SlideView.module.css';
 
-//TODO: Encontrar uam solução para o style
+// TODO: Refatorar com Swiper
 
 // const DotButton = styled(ButtonBase)(({ theme }) => ({
 //     display: 'inline-block',
