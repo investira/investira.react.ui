@@ -5,7 +5,7 @@ import { TextField } from '@mui/material';
 import { validators } from 'investira.sdk';
 
 const MaskedTextField = memo(props => {
-    const { maskIgnoreChars, maskFilterChar, mask, ...otherProps } = props;
+    const { maskIgnoreChars = /[^\w\s]/gi, maskFilterChar, mask, ...otherProps } = props;
     const clearValues = pValues => {
         if (!validators.isNull(pValues)) {
             return pValues.replace(/\.|-/g, '');
@@ -61,10 +61,6 @@ MaskedTextField.propTypes = {
     mask: PropTypes.func,
     onChange: PropTypes.func,
     value: PropTypes.string
-};
-
-MaskedTextField.defaultProps = {
-    maskIgnoreChars: /[^\w\s]/gi
 };
 
 MaskedTextField.displayName = 'MaskedTextField';

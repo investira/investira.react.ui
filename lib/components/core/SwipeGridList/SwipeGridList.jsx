@@ -29,7 +29,9 @@ const GridContainer = styled(Swiper)(({ theme }) => ({
     }
     // },
 }));
+
 const SwipeGridList = memo(props => {
+    const { id = 'default', pagination = true, spaceBetween = 8, columns = 3, rows = 2 } = props;
     const [wrapHeight, setWrapHeight] = useState(300);
     const slideRef = useRef(null);
     const PAGINATION_HEIGHT = 28;
@@ -47,23 +49,20 @@ const SwipeGridList = memo(props => {
     useEffect(() => {
         if (slideRef.current) {
             const slideHeight = slideRef.current.children[0].clientHeight;
-            const calcHeight =
-                slideHeight * props.rows +
-                props.spaceBetween * (props.rows - 1) +
-                PAGINATION_HEIGHT;
+            const calcHeight = slideHeight * rows + spaceBetween * (rows - 1) + PAGINATION_HEIGHT;
             setWrapHeight(calcHeight);
         }
-    }, [props.data, props.rows, props.spaceBetween]);
+    }, [props.data, rows, spaceBetween]);
 
     // RENDER
-    const xId = `swipe-grid-list-${props.id}`;
+    const xId = `swipe-grid-list-${id}`;
     const Component = props.child;
 
     const renderItem = useCallback(
         (pItem, pIndex) => {
             const xElemKey = `${xId}-grid-item-${pIndex}`;
             const xSlideStyle = {
-                height: `calc((100% - ${props.spaceBetween}px) / ${props.rows})`
+                height: `calc((100% - ${spaceBetween}px) / ${rows})`
             };
             return (
                 <SwiperSlide id={xId} key={xElemKey} ref={slideRef} style={xSlideStyle}>
@@ -75,18 +74,18 @@ const SwipeGridList = memo(props => {
                 </SwiperSlide>
             );
         },
-        [handleClick, props.childProps, props.rows, props.spaceBetween, xId]
+        [handleClick, props.childProps, rows, spaceBetween, xId]
     );
 
     return (
         <GridContainer
-            slidesPerView={props.columns}
+            slidesPerView={columns}
             grid={{
                 fill: 'row',
-                rows: props.rows
+                rows: rows
             }}
-            spaceBetween={props.spaceBetween}
-            pagination={props.pagination}
+            spaceBetween={spaceBetween}
+            pagination={pagination}
             modules={[Grid, Pagination]}>
             {!validators.isEmpty(props.data) &&
                 Object.values(props.data).map((xItem, xIndex) => {
@@ -110,19 +109,6 @@ SwipeGridList.propTypes = {
     columns: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     rows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     onClick: PropTypes.func
-};
-
-SwipeGridList.defaultProps = {
-    id: 'default',
-    data: [],
-    keyValue: 'id',
-    pagination: true,
-    slideWidth: 'auto',
-    spaceBetween: 8,
-    centeredSlides: true,
-    centeredSlidesBounds: true,
-    columns: 3,
-    rows: 2
 };
 
 SwipeGridList.displayName = 'SwipeGridList';

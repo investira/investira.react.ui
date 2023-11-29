@@ -4,7 +4,14 @@ import { Button, CircularProgress, Box, Stack } from '@mui/material';
 
 // Substituir pelo LoadingButton do MUI
 const SubmitButton = memo(props => {
-    const { children, isSubmitting, variant, disabled, fullWidth, ...restProps } = props;
+    const {
+        children,
+        isSubmitting = false,
+        variant = 'outlined',
+        disabled = false,
+        fullWidth,
+        ...restProps
+    } = props;
     return (
         <Box position="relative">
             <Button
@@ -41,12 +48,6 @@ SubmitButton.propTypes = {
     isSubmitting: PropTypes.bool,
     children: PropTypes.node,
     fullWidth: PropTypes.bool
-};
-
-SubmitButton.defaultProps = {
-    variant: 'outlined',
-    disabled: false,
-    isSubmitting: false
 };
 
 SubmitButton.displayName = 'SubmitButton';

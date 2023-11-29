@@ -21,6 +21,7 @@ const StyledIconButton = styled(IconButton)(({ theme }) => ({
     color: theme.palette.primary
 }));
 function SlideView(props) {
+    const { area = 'content', nav } = props;
     const [wrapWidth, setWrapWidth] = useState(0);
     const [wrapPosition, setWrapPosition] = useState(0);
     const [slideWidth, setSlideWidth] = useState(0);
@@ -227,7 +228,7 @@ function SlideView(props) {
         }
     };
 
-    function swipeable() {
+    function pvSwipeable() {
         /*
          * Resolve Bug no Chrome Mobile
          */
@@ -265,7 +266,7 @@ function SlideView(props) {
         // const xViews = Array.prototype.slice.call(slideWrapRef.current.children, 0);
 
         setElementsSizes();
-        props.swipeable && swipeable();
+        props.swipeable && pvSwipeable();
     };
 
     useEffect(() => {
@@ -324,8 +325,6 @@ function SlideView(props) {
             move(slideCurrent + 1);
         }
     }, [triggerNext]);
-
-    const { area, nav } = props;
 
     return (
         <Box
@@ -415,7 +414,7 @@ SlideView.propTypes = {
     id: PropTypes.string.isRequired,
     nav: PropTypes.oneOf(['arrows', 'dots']),
     swipeable: PropTypes.bool,
-    backButton: PropTypes.bool,
+
     nextButton: PropTypes.bool,
     area: PropTypes.oneOf(['content', 'container']),
     step: PropTypes.number,
@@ -425,14 +424,6 @@ SlideView.propTypes = {
     triggerNext: PropTypes.bool,
     slideCallback: PropTypes.func,
     fullWidth: PropTypes.bool
-};
-
-SlideView.defaultProps = {
-    swipeable: true,
-    backButton: true,
-    nextButton: true,
-    area: 'content',
-    step: 0
 };
 
 SlideView.displayName = 'SlideView';

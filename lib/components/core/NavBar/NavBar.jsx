@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { Box } from '@mui/material';
 
 const NavBar = memo(props => {
+    const { variant = 'dense', gutters, left, right, center } = props;
+
     return (
         <>
             <Box
@@ -20,16 +22,16 @@ const NavBar = memo(props => {
                         alignContent: 'stretch',
                         padding: '0 4px'
                     },
-                    props.variant === 'dense' && {
+                    variant === 'dense' && {
                         height: '48px'
                     },
-                    props.variant === 'regular' && {
+                    variant === 'regular' && {
                         height: '56px'
                     },
-                    props.variant === 'large' && {
+                    variant === 'large' && {
                         height: '64px'
                     },
-                    props.gutters && {
+                    gutters && {
                         padding: '0 16px'
                     }
                 ]}>
@@ -43,12 +45,12 @@ const NavBar = memo(props => {
                             height: '100%',
                             justifyContent: 'space-between'
                         },
-                        !props.left &&
-                            !props.right && {
+                        !left &&
+                            !right && {
                                 justifyContent: 'center'
                             }
                     ]}>
-                    {props.left && (
+                    {left && (
                         <Box
                             sx={[
                                 {
@@ -57,49 +59,45 @@ const NavBar = memo(props => {
                                     alignItems: 'center',
                                     justifyContent: 'center'
                                 },
-                                props.variant === 'dense' && {
+                                variant === 'dense' && {
                                     minWidth: '48px',
                                     width: '48px',
                                     flexGrow: 0,
                                     flexShrink: 0
                                 },
-                                props.variant === 'regular' && {
+                                variant === 'regular' && {
                                     minWidth: '48px',
                                     flexGrow: 0,
                                     flexShrink: 0
                                 },
-                                props.variant === 'large' && {
+                                variant === 'large' && {
                                     minWidth: '48px',
                                     width: '64px',
                                     flexGrow: 0,
                                     flexShrink: 0
                                 }
                             ]}>
-                            {props.left}
+                            {left}
                         </Box>
                     )}
 
-                    {props.center && (
+                    {center && (
                         <Box
                             sx={[
                                 { display: 'flex', height: '100%', alignItems: 'center' },
-                                props.left &&
-                                    props.center &&
-                                    !props.right && { paddingRight: '12px', flexGrow: 1 },
-                                props.right &&
-                                    props.center &&
-                                    !props.left && { paddingLeft: '12px', flexGrow: 1 },
-                                props.variant === 'dense' && { flexGrow: 1 },
-                                props.variant === 'regular' && {
+                                left && center && !right && { paddingRight: '12px', flexGrow: 1 },
+                                right && center && !left && { paddingLeft: '12px', flexGrow: 1 },
+                                variant === 'dense' && { flexGrow: 1 },
+                                variant === 'regular' && {
                                     flexGrow: 1
                                 },
-                                props.variant === 'large' && { flexGrow: 1 }
+                                variant === 'large' && { flexGrow: 1 }
                             ]}>
-                            {props.center}
+                            {center}
                         </Box>
                     )}
 
-                    {props.right && (
+                    {right && (
                         <Box
                             sx={[
                                 {
@@ -108,25 +106,25 @@ const NavBar = memo(props => {
                                     alignItems: 'center',
                                     justifyContent: 'flex-end'
                                 },
-                                props.variant === 'dense' && {
+                                variant === 'dense' && {
                                     minWidth: '48px',
                                     width: '48px',
                                     flexGrow: 0,
                                     flexShrink: 0
                                 },
-                                props.variant === 'regular' && {
+                                variant === 'regular' && {
                                     minWidth: '48px',
                                     flexGrow: 0,
                                     flexShrink: 0
                                 },
-                                props.variant === 'large' && {
+                                variant === 'large' && {
                                     minWidth: '48px',
                                     width: '64px',
                                     flexGrow: 0,
                                     flexShrink: 0
                                 }
                             ]}>
-                            {props.right}
+                            {right}
                         </Box>
                     )}
                 </Box>
@@ -145,10 +143,6 @@ NavBar.propTypes = {
     left: PropTypes.node,
     right: PropTypes.node,
     center: PropTypes.node
-};
-
-NavBar.defaultProps = {
-    variant: 'dense'
 };
 
 NavBar.displayName = 'NavBar';

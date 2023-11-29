@@ -20,6 +20,8 @@ const StyledInputAdornment = styled(InputAdornment)(() => ({
 
 const SearchBox = memo(
     forwardRef((props, ref) => {
+        const { filter = false, id = 'searchbox' } = props;
+
         const [clearBtn, setClearBtn] = useState(!validators.isNull(props.value));
         const [value, setValue] = useState(props.value || '');
         const [querySplited, setQuerySplited] = useState(props.value ? props.value.split(' ') : []);
@@ -134,7 +136,7 @@ const SearchBox = memo(
                             <InputBase
                                 inputRef={searchRef}
                                 type="search"
-                                id={props.id}
+                                id={id}
                                 value={value}
                                 onChange={handleChange}
                                 onFocus={props.onFocus}
@@ -167,7 +169,7 @@ const SearchBox = memo(
                         </IconButton>
                     )}
 
-                    {props.filter && (
+                    {filter && (
                         <IconButton color="primary" aria-label="filtro" onClick={handleFilter}>
                             <Icon iconName={'filter'} />
                         </IconButton>
@@ -218,11 +220,6 @@ SearchBox.propTypes = {
     onClick: PropTypes.func,
     value: PropTypes.string,
     clearCallback: PropTypes.func
-};
-
-SearchBox.defaultProps = {
-    filter: false,
-    id: 'searchbox'
 };
 
 SearchBox.displayName = 'SearchBox';

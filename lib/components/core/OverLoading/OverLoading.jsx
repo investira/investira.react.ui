@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Box, CircularProgress, Backdrop, Typography } from '@mui/material';
 
 function OverLoading(props) {
+    const { color = 'textPrimary', variant = 'caption', size = 40 } = props;
     const [open, setOpen] = React.useState(false);
 
     const xSx = {
@@ -23,10 +24,10 @@ function OverLoading(props) {
                         width: '60%',
                         textAlign: 'center'
                     }}>
-                    <CircularProgress color="primary" size={props.size} />
+                    <CircularProgress color="primary" size={size} />
                     <Box sx={{ height: '24px' }}></Box>
                     {props.message && (
-                        <Typography color={props.color} align="center" variant={props.variant}>
+                        <Typography color={color} align="center" variant={variant}>
                             {props.message}
                         </Typography>
                     )}
@@ -43,12 +44,6 @@ OverLoading.propTypes = {
     message: PropTypes.string,
     color: PropTypes.string,
     variant: PropTypes.string
-};
-
-OverLoading.defaultProps = {
-    color: 'textPrimary',
-    variant: 'caption',
-    size: 40
 };
 
 OverLoading.displayName = 'OverLoading';

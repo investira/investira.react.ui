@@ -44,6 +44,7 @@ const Span = styled(Box)(({ theme, animate, color, value }) => {
 });
 
 function ProgressBar(props) {
+    const { color = 'primary', value = 100, animate = 'progress' } = props;
     return (
         <Box
             sx={[
@@ -57,12 +58,8 @@ function ProgressBar(props) {
                     overflowX: 'hidden'
                 })
             ]}>
-            <Span
-                animate={props.animate}
-                color={props.color}
-                value={props.value}
-                component="span"></Span>
-            <Span color={props.color} animate={props.animate}></Span>
+            <Span animate={animate} color={color} value={value} component="span"></Span>
+            <Span color={color} animate={animate}></Span>
         </Box>
     );
 }
@@ -71,12 +68,6 @@ ProgressBar.propTypes = {
     color: PropTypes.string,
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     animate: PropTypes.oneOf(['indeterminate', 'progress'])
-};
-
-ProgressBar.defaultProps = {
-    color: 'primary',
-    value: 100,
-    animate: 'progress'
 };
 
 ProgressBar.displayName = 'ProgressBar';

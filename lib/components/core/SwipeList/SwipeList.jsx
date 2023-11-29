@@ -33,6 +33,16 @@ const Container = styled(Swiper)(({ theme }) => ({
 }));
 
 const SwipeList = memo(props => {
+    const {
+        id = 'default',
+        slideWidth = 343,
+        spaceBetween = 8,
+        centeredSlides = true,
+        centeredSlidesBounds = true,
+        slidesPerView = 'auto',
+        slidesPerGroupAuto = false,
+        shortSwipes = true
+    } = props;
     // HANDLERS
     const handleClick = (pData, pIndex, pEvent) => () => {
         if (props.onClick) {
@@ -41,18 +51,18 @@ const SwipeList = memo(props => {
     };
 
     // RENDER
-    const xId = `swipe-list-${props.id}`;
+    const xId = `swipe-list-${id}`;
     const Component = props.child;
 
     const containerProps = {
         pagination: props.pagination,
         modules: [Pagination],
-        centeredSlides: props.centeredSlides,
-        centeredSlidesBounds: props.centeredSlidesBounds,
-        slidesPerView: props.slidesPerView,
-        slidesPerGroupAuto: props.slidesPerGroupAuto,
-        spaceBetween: props.spaceBetween,
-        shortSwipes: props.shortSwipes
+        centeredSlides: centeredSlides,
+        centeredSlidesBounds: centeredSlidesBounds,
+        slidesPerView: slidesPerView,
+        slidesPerGroupAuto: slidesPerGroupAuto,
+        spaceBetween: spaceBetween,
+        shortSwipes: shortSwipes
     };
 
     return (
@@ -61,7 +71,7 @@ const SwipeList = memo(props => {
                 Object.values(props.data).map((xItem, xIndex) => {
                     const xElemKey = `${xId}-item-${xIndex}`;
                     return (
-                        <SwiperSlide key={xElemKey} style={{ width: props.slideWidth }}>
+                        <SwiperSlide key={xElemKey} style={{ width: slideWidth }}>
                             {({ isActive }) => (
                                 <Component
                                     {...props.childProps}
@@ -92,20 +102,6 @@ SwipeList.propTypes = {
     slidesPerView: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     shortSwipes: PropTypes.bool,
     onClick: PropTypes.func
-};
-
-SwipeList.defaultProps = {
-    id: 'default',
-    data: [],
-    keyValue: 'id',
-    pagination: false,
-    slideWidth: 343,
-    spaceBetween: 8,
-    centeredSlides: true,
-    centeredSlidesBounds: true,
-    slidesPerView: 'auto',
-    slidesPerGroupAuto: false,
-    shortSwipes: true
 };
 
 SwipeList.displayName = 'SwipeList';

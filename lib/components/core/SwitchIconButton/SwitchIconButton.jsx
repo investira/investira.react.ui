@@ -4,6 +4,8 @@ import { Icon } from '../';
 import PropTypes from 'prop-types';
 
 const SwithIconButton = memo(props => {
+    const { size = 16, iconName = 'on_off' } = props;
+
     const [active, setActive] = useState(false);
     const [variant, setVariant] = useState('outlined');
     const [iconColor, setIconColor] = useState('primary');
@@ -26,7 +28,7 @@ const SwithIconButton = memo(props => {
 
     return (
         <Button variant={variant} onClick={handleClick} color={'primary'} size={'small'}>
-            <Icon iconName={props.iconName} size={props.size} color={iconColor} />
+            <Icon iconName={iconName} size={size} color={iconColor} />
         </Button>
     );
 });
@@ -35,11 +37,6 @@ SwithIconButton.propTypes = {
     size: PropTypes.number,
     iconName: PropTypes.string,
     onClick: PropTypes.func
-};
-
-SwithIconButton.defaultProps = {
-    size: 16,
-    iconName: 'on_off'
 };
 
 SwithIconButton.displayName = 'SwithIconButton';
