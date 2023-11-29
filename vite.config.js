@@ -9,7 +9,7 @@ import svgr from 'vite-plugin-svgr';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 //import { nodePolyfills } from 'vite-plugin-node-polyfills';
-import preserveDirectives from 'rollup-plugin-preserve-directives';
+//import preserveDirectives from 'rollup-plugin-preserve-directives';
 
 import * as packageJson from './package.json';
 
@@ -24,8 +24,8 @@ export default defineConfig({
         svgr(),
         reactVirtualized(),
         nodeResolve(),
-        commonjs(),
-        preserveDirectives()
+        commonjs()
+        //preserveDirectives()
         // nodePolyfills({
         //     include: ['fs'],
         //     overrides: {
@@ -82,7 +82,7 @@ export default defineConfig({
                 hoistTransitiveImports: false,
                 //manualChunks: {},
                 generatedCode: 'es2015', //es5
-                preserveModules: true,
+                //preserveModules: true,
                 banner: chunkInfo => {
                     if (['core', 'charts', 'reports', 'utilities'].includes(chunkInfo.name)) {
                         return `"use client"`;
