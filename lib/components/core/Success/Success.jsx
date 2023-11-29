@@ -2,6 +2,15 @@ import { Box } from '@mui/material';
 import PropTypes from 'prop-types';
 
 function Success(props) {
+    const {
+        height = 200,
+        width = 200,
+        startAnimation = true,
+        stroke = '#00dfa8',
+        fill = 'none',
+        arcStroke,
+        iconStroke
+    } = props;
     return (
         <Box
             sx={{
@@ -11,26 +20,26 @@ function Success(props) {
             }}>
             <Box
                 sx={{
-                    fill: props.fill,
-                    stroke: props.arcStroke || props.stroke,
+                    fill: fill,
+                    stroke: arcStroke || stroke,
                     strokeWidth: 40,
                     strokeMiterlimit: 10
                 }}
                 style={{
-                    width: props.width ? `${props.width}px` : null,
-                    height: props.height ? `${props.height}px` : null
+                    width: width ? `${width}px` : null,
+                    height: height ? `${height}px` : null
                 }}>
                 <svg
                     id="Layer_1"
                     x="0px"
                     y="0px"
-                    width={props.width ? `${props.width}px` : null}
-                    height={props.height ? `${props.height}px` : null}
+                    width={width ? `${width}px` : null}
+                    height={height ? `${height}px` : null}
                     viewBox="0 0 512 512">
                     <Box
                         component="path"
                         sx={[
-                            props.startAnimation && {
+                            startAnimation && {
                                 strokeDasharray: '1473 1475',
                                 strokeDashoffset: 1474,
                                 animation:
@@ -61,13 +70,13 @@ function Success(props) {
                         sx={[
                             {
                                 fill: 'none',
-                                stroke: props.iconStroke || props.stroke,
+                                stroke: iconStroke || stroke,
                                 strokeWidth: 40,
                                 strokeLinecap: 'round',
                                 strokeLinejoin: 'round',
                                 strokeMiterlimit: 10
                             },
-                            props.startAnimation && {
+                            startAnimation && {
                                 strokeDasharray: '298 300',
                                 strokeDashoffset: 299,
                                 animation:

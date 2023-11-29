@@ -5,7 +5,7 @@ import { validators } from 'investira.sdk';
 import { CenterInView } from '../';
 function SSE(props) {
     let eventSource = null;
-    const [data, setData] = useState(props.initialValue);
+    const [data, setData] = useState(props.initialValue || {});
     const [error, setError] = useState(false);
 
     const isMount = useRef(false);
@@ -68,10 +68,6 @@ SSE.propTypes = {
     children: PropTypes.element.isRequired,
     route: PropTypes.string.isRequired,
     initialValue: PropTypes.oneOfType([PropTypes.object, PropTypes.array])
-};
-
-SSE.defaultProps = {
-    initialValue: {}
 };
 
 SSE.displayName = 'SSE';

@@ -3,13 +3,21 @@ import Typed from 'typed.js';
 import PropTypes from 'prop-types';
 
 function Typedy(props) {
+    const {
+        strings,
+        typeSpeed = 30,
+        loop = true,
+        backSpeed = 30,
+        backDelay = 5000,
+        smartBackspace = true
+    } = props;
+
     const xElemRef = useRef();
     const xTyped = useRef();
 
     useEffect(() => {
-        const { strings, typeSpeed, loop, backSpeed, backDelay, smartBackspace } = props;
         const xOptions = {
-            strings: strings,
+            strings: strings || [],
             typeSpeed: typeSpeed,
             loop: loop,
             backSpeed: backSpeed,
@@ -22,7 +30,7 @@ function Typedy(props) {
         return () => {
             xTyped.current.destroy();
         };
-    }, [props]);
+    }, [strings, typeSpeed, loop, backSpeed, backDelay, smartBackspace]);
 
     return <span ref={xElemRef}></span>;
 }
@@ -34,15 +42,6 @@ Typedy.propTypes = {
     backSpeed: PropTypes.number,
     backDelay: PropTypes.number,
     smartBackspace: PropTypes.bool
-};
-
-Typedy.defaultProps = {
-    strings: [],
-    typeSpeed: 30,
-    loop: true,
-    backSpeed: 30,
-    backDelay: 5000,
-    smartBackspace: true
 };
 
 Typedy.displayName = 'Typedy';

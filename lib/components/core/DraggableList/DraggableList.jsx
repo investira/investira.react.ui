@@ -6,6 +6,7 @@ import { sortByAttr } from '../../utils/helpers';
 import DraggableItem from './DraggableItem';
 
 const DraggableList = memo(props => {
+    const { disableDrag = false } = props;
     // STATE
     const [options, setOptions] = useState([]);
 
@@ -61,7 +62,7 @@ const DraggableList = memo(props => {
 
     const renderItem = useCallback(
         (pItem, pIndex) => {
-            if (props.disableDrag) {
+            if (disableDrag) {
                 return <Item key={pItem.id} {...pItem} option={pItem} {...props.itemProps} />;
             }
 
@@ -75,7 +76,7 @@ const DraggableList = memo(props => {
                 </DraggableItem>
             );
         },
-        [handleMoveItem, props.disableDrag, props.itemProps]
+        [handleMoveItem, disableDrag, props.itemProps]
     );
 
     return (
@@ -95,10 +96,6 @@ DraggableList.propTypes = {
     item: PropTypes.func,
     itemProps: PropTypes.object,
     onChange: PropTypes.func
-};
-
-DraggableList.defaultProps = {
-    disableDrag: false
 };
 
 export default DraggableList;

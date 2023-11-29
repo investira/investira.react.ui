@@ -2,6 +2,7 @@ import { CircularProgress, Box } from '@mui/material';
 import PropTypes from 'prop-types';
 
 function Loading(props) {
+    const { align = 'center', size = 40 } = props;
     return (
         <Box
             sx={[
@@ -12,15 +13,15 @@ function Loading(props) {
                     flexDirection: 'column',
                     alignItems: 'center'
                 },
-                props.align === 'center' && {
+                align === 'center' && {
                     justifyContent: 'center'
                 },
-                !props.align === 'top' && {
+                !align === 'top' && {
                     justifyContent: 'start'
                 }
             ]}>
             <Box>
-                <CircularProgress size={props.size} />
+                <CircularProgress size={size} />
             </Box>
         </Box>
     );
@@ -29,11 +30,6 @@ function Loading(props) {
 Loading.propTypes = {
     align: PropTypes.oneOf(['top', 'center']),
     size: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-};
-
-Loading.defaultProps = {
-    align: 'center',
-    size: 40
 };
 
 Loading.displayName = 'Loading';

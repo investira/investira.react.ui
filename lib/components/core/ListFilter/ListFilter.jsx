@@ -239,7 +239,7 @@ const ListFilter = memo(props => {
     );
 
     useEffect(() => {
-        initFilterDefaultSelected(props.filters);
+        initFilterDefaultSelected(props.filters || {});
     }, [props.filters, isFiltersEmpty, initFilterDefaultSelected]);
 
     return (
@@ -268,7 +268,7 @@ const ListFilter = memo(props => {
                                     },
                                     padding: '0 16px'
                                 }}>
-                                {props.filters &&
+                                {!validators.isEmpty(props.filters) &&
                                     props.filters.map((xFilter, xIndex) => {
                                         const xChipProps = {
                                             icon: xFilter.icon,
@@ -456,10 +456,6 @@ ListFilter.propTypes = {
     ),
     onResetData: PropTypes.func,
     onUpdateParams: PropTypes.func
-};
-
-ListFilter.defaultProps = {
-    filters: {}
 };
 
 ListFilter.displayName = 'ListFilter';

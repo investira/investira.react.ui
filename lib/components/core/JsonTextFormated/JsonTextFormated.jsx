@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { Typography } from '@mui/material';
 
 const JsonTextFormated = props => {
-    const { text, ...otherProps } = props;
+    const { text = '', ...otherProps } = props;
 
     const createMarkup = pTextFragment => {
         return { __html: pTextFragment };
@@ -17,10 +17,6 @@ const JsonTextFormated = props => {
 
 JsonTextFormated.propTypes = {
     text: PropTypes.string.isRequired
-};
-
-JsonTextFormated.defaultProps = {
-    text: ''
 };
 
 JsonTextFormated.displayName = 'JsonTextFormated';

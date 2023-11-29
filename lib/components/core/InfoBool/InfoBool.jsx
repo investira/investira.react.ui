@@ -15,27 +15,25 @@ const DivIcon = styled(Stack)(({ value }) => ({
         flexDirection: 'row'
     })
 }));
+
 function InfoBool(props) {
+    const { variant = 'caption', value, label, labelColor = 'textSecondary', gutter } = props;
+
     return (
-        <Root gutter={props.gutter}>
-            <Typography variant={props.variant} color={props.labelColor} component="p">
-                {props.label}
+        <Root gutter={gutter}>
+            <Typography variant={variant} color={labelColor} component="p">
+                {label}
             </Typography>
-            <DivIcon value={props.value}>
+            <DivIcon value={value}>
                 <Icon
-                    color={props.value ? 'greenLight' : 'error'}
-                    iconName={props.value ? 'ok' : 'cancel'}
-                    size={props.value ? 24 : 16}
+                    color={value ? 'greenLight' : 'error'}
+                    iconName={value ? 'ok' : 'cancel'}
+                    size={value ? 24 : 16}
                 />
             </DivIcon>
         </Root>
     );
 }
-
-InfoBool.defaultProps = {
-    variant: 'caption',
-    labelColor: 'textSecondary'
-};
 
 InfoBool.propTypes = {
     onClick: PropTypes.func,

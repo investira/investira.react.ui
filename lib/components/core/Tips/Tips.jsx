@@ -16,6 +16,13 @@ const Desc = styled(Box)(({ show }) => ({
 }));
 
 const Tips = memo(props => {
+    const {
+        iconName = 'lamp',
+        desc = 'Utilize a prop "desc" para inserir uma descrição',
+        size = 16,
+        color = 'primary'
+    } = props;
+
     const descRef = useRef();
     const bodyRef = useRef();
 
@@ -36,12 +43,12 @@ const Tips = memo(props => {
                 flexDirection: 'row'
             }}>
             <IconButton onClick={handleToogle}>
-                <Icon iconName={props.iconName} size={props.size} color={props.color} />
+                <Icon iconName={iconName} size={size} color={color} />
             </IconButton>
             <Desc show={show} ref={descRef}>
                 <Box ref={bodyRef} sx={{ p: '12px 8px' }}>
                     <JsonTextFormated
-                        text={props.desc}
+                        text={desc}
                         color={'textSecondary'}
                         variant={'caption'}
                         component={'p'}
@@ -58,13 +65,6 @@ Tips.propTypes = {
     desc: PropTypes.string,
     size: PropTypes.number,
     color: PropTypes.string
-};
-
-Tips.defaultProps = {
-    iconName: 'lamp',
-    desc: 'Utilize a prop "desc" para inserir uma descrição',
-    size: 16,
-    color: 'primary'
 };
 
 Tips.displayName = 'Tips';

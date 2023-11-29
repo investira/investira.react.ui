@@ -24,7 +24,7 @@ const Root = styled(Box)(() => ({
     }
 }));
 function Placeholder(props) {
-    const { width, height, words, lines, radius } = props;
+    const { width = '100%', height = '0.5rem', words, lines = 1, radius = '4px' } = props;
     const elems = [];
 
     let placeholderStyle = {
@@ -62,15 +62,6 @@ Placeholder.propTypes = {
     lines: PropTypes.number,
     words: PropTypes.number,
     radius: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-};
-
-Placeholder.defaultProps = {
-    width: '100%',
-    height: '0.5rem',
-    circle: false,
-    lines: 1,
-    variant: 'p',
-    radius: '4px'
 };
 
 Placeholder.displayName = 'Placeholder';

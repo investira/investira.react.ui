@@ -38,8 +38,12 @@ const SyncIconButton = memo(props => {
     const buttonClass = isSyncing ? 'rotate' : '';
 
     return (
-        <RotateIconButton {...iconButtonProps} onClick={handleSync} className={buttonClass}>
-            <Icon {...iconProps} iconName={'synchronize'} />
+        <RotateIconButton
+            color="primary"
+            {...iconButtonProps}
+            onClick={handleSync}
+            className={buttonClass}>
+            <Icon size={16} {...iconProps} iconName={'synchronize'} />
         </RotateIconButton>
     );
 });
@@ -48,15 +52,6 @@ SyncIconButton.propTypes = {
     iconButtonProps: PropTypes.object,
     iconProps: PropTypes.object,
     onClick: PropTypes.func
-};
-
-SyncIconButton.defaultProps = {
-    iconButtonProps: {
-        color: 'primary'
-    },
-    iconProps: {
-        size: 16
-    }
 };
 
 SyncIconButton.displayName = 'SyncIconButton';

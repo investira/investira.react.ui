@@ -5,7 +5,7 @@ import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import 'moment/min/locales';
 
 const LocalizationProvider = props => {
-    const { children, locale, ...restProps } = props;
+    const { children, locale = 'pt-br', ...restProps } = props;
     return (
         <MuiLocalizationProvider dateAdapter={AdapterMoment} locale={locale} {...restProps}>
             {children}
@@ -16,10 +16,6 @@ const LocalizationProvider = props => {
 LocalizationProvider.propTypes = {
     children: PropTypes.node,
     locale: PropTypes.string
-};
-
-LocalizationProvider.defaultProps = {
-    locale: 'pt-br'
 };
 
 LocalizationProvider.displayName = 'LocalizationProvider';

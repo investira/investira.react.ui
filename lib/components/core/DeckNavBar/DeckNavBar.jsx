@@ -5,6 +5,7 @@ import { IconButton } from '@mui/material';
 import { NavBar, Icon, DeckContext } from '../';
 
 const DeckNavBar = memo(props => {
+    const { actionBehavior = 'default' } = props;
     return (
         <DeckContext.Consumer>
             {({ prevView, handlePrevView, activeView }) => {
@@ -15,10 +16,9 @@ const DeckNavBar = memo(props => {
                     custom: true
                 };
 
-                const xActionBehavior = xBehaviors[props.actionBehavior];
+                const xActionBehavior = xBehaviors[actionBehavior];
 
-                const xAction =
-                    props.actionBehavior === 'custom' ? props.right[activeView] : props.right;
+                const xAction = actionBehavior === 'custom' ? props.right[activeView] : props.right;
 
                 return (
                     <NavBar
@@ -48,10 +48,6 @@ DeckNavBar.propTypes = {
     center: PropTypes.object,
     onBack: PropTypes.func,
     actionBehavior: PropTypes.oneOf(['default', 'inverted', 'visible', 'custom'])
-};
-
-DeckNavBar.defaultProps = {
-    actionBehavior: 'default'
 };
 
 DeckNavBar.displayName = 'DeckNavBar';

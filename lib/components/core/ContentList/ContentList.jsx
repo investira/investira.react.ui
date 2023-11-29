@@ -104,10 +104,6 @@ ContentList.propTypes = {
     onExited: PropTypes.func
 };
 
-ContentList.defaultProps = {
-    itemProps: {}
-};
-
 ContentList.displayName = 'ContentList';
 
 export default ContentList;
