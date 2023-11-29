@@ -6,7 +6,13 @@ import { FriendlyDatePicker } from '../';
 import 'moment/min/locales';
 
 const DatePicker = props => {
-    const { friendly = true, locked = 'pt-br', disabled = false, ...otherProps } = props;
+    const {
+        friendly = true,
+        locked = false,
+        locale = 'pt-br',
+        disabled = false,
+        ...otherProps
+    } = props;
 
     const xPickerSx = {
         ...(friendly && {
@@ -23,7 +29,7 @@ const DatePicker = props => {
             {friendly && (
                 <FriendlyDatePicker
                     utils={MomentUtils}
-                    locale={props.locale}
+                    locale={locale}
                     locked={locked}
                     disabled={disabled}
                     {...otherProps}
