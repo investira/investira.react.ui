@@ -17,7 +17,18 @@ const StyledList = styled(List)(({ orientation }) => ({
     })
 }));
 
+const defaultProps = {
+    itemProps: {},
+    list: [],
+    overscanRowCount: 10,
+    orientation: 'normal'
+};
+
 const ListVirtualized = memo(props => {
+    const propsWithDefaults = { ...defaultProps, ...props };
+
+    const { itemProps, list, overscanRowCount, orientation } = propsWithDefaults;
+
     const ListRef = useRef();
     const ListRoot = useRef();
 
@@ -44,11 +55,11 @@ const ListVirtualized = memo(props => {
 
             const xOrientation = {
                 reverse: {
-                    list: [...props.list].reverse(),
+                    list: [...list].reverse(),
                     style: { ...style, top: 'auto', bottom: style.top }
                 },
                 normal: {
-                    list: props.list,
+                    list: list,
                     style: style
                 }
             };
@@ -58,8 +69,8 @@ const ListVirtualized = memo(props => {
 
             if (!isTaller) {
                 console.log('!isTaller', !isTaller);
-                xList = xOrientation[props.orientation].list;
-                xStyle = xOrientation[props.orientation].style;
+                xList = xOrientation[orientation].list;
+                xStyle = xOrientation[orientation].style;
             }
 
             const Component = props.item;
@@ -80,7 +91,7 @@ const ListVirtualized = memo(props => {
                             index={index}
                             data={xList[index] || []}
                             style={xStyle}
-                            {...props.itemProps}
+                            {...itemProps}
                         />
                     )}
                 </CellMeasurer>
@@ -97,20 +108,20 @@ const ListVirtualized = memo(props => {
         }
     };
 
-    const xRowCount = props.totalItens || props.list.length;
+    const xRowCount = props.totalItens || list.length;
 
     const scrollToBottom = useCallback(() => {
         _cache.current.clearAll();
 
-        const xLastRow = props.list.length;
+        const xLastRow = list.length;
         if (xLastRow) {
             ListRef.current.scrollToRow(xLastRow);
         }
-    }, [props.list]);
+    }, [list]);
 
     useEffect(() => {
         scrollToBottom();
-    }, [props.list, scrollToBottom]);
+    }, [list, scrollToBottom]);
 
     useEffect(() => {
         removeTabIndex(ListRoot);
@@ -121,19 +132,19 @@ const ListVirtualized = memo(props => {
             ref={ListRoot}
             sx={[
                 { position: 'relative', minHeight: '100%' },
-                ...(validators.isEmpty(props.list) && { height: '100%' })
+                ...(validators.isEmpty(list) && { height: '100%' })
             ]}>
             <StyledAutoSizer onResize={scrollToBottom}>
                 {({ width, height }) => {
                     return (
                         <StyledList
                             id={`${props.id}-list`}
-                            orientation={props.orientation}
+                            orientation={orientation}
                             ref={ListRef}
                             deferredMeasurementCache={_cache.current}
                             width={width}
                             height={height}
-                            overscanRowCount={props.overscanRowCount}
+                            overscanRowCount={overscanRowCount}
                             noRowsRenderer={_noRowsRenderer}
                             rowCount={xRowCount}
                             rowHeight={_cache.current.rowHeight}
@@ -160,13 +171,6 @@ ListVirtualized.propTypes = {
     overscanRowCount: PropTypes.number,
     totalItens: PropTypes.number,
     id: PropTypes.string
-};
-
-ListVirtualized.defaultProps = {
-    itemProps: {},
-    list: [],
-    overscanRowCount: 10,
-    orientation: 'normal'
 };
 
 ListVirtualized.displayName = 'ListVirtualized';

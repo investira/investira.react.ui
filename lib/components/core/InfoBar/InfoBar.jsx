@@ -4,6 +4,20 @@ import { validators } from 'investira.sdk';
 import { ProgressBar } from '../';
 
 function InfoBar(props) {
+    const {
+        variant = 'caption',
+        labelColor = 'textSecondary',
+        labelComponent = 'span',
+        caption,
+        captionVariant = 'caption',
+        captionColor = 'textPrimary',
+        captionComponent = 'span',
+        value,
+        valueColor = 'primary',
+        animate = 'progress',
+        children
+    } = props;
+
     return (
         <Stack
             justifyContent="flex-start"
@@ -11,39 +25,25 @@ function InfoBar(props) {
             direction="column"
             spacing={0}
             flexGrow={1}>
-            <Typography
-                variant={props.variant}
-                color={props.labelColor}
-                component={props.labelComponent}>
+            <Typography variant={variant} color={labelColor} component={labelComponent}>
                 {props.label}
             </Typography>
 
             <Box sx={{ position: 'relative', margin: '4px 0 2px 0' }}>
-                <ProgressBar animate={props.animate} value={props.value} color={props.valueColor} />
+                <ProgressBar animate={animate} value={value} color={valueColor} />
             </Box>
 
-            {(!validators.isEmpty(props.caption) || !validators.isEmpty(props.children)) && (
+            {(!validators.isEmpty(caption) || !validators.isEmpty(children)) && (
                 <Typography
-                    variant={props.captionVariant}
-                    color={props.captionColor}
-                    component={props.captionComponent}>
-                    {props.children || props.caption}
+                    variant={captionVariant}
+                    color={captionColor}
+                    component={captionComponent}>
+                    {children || caption}
                 </Typography>
             )}
         </Stack>
     );
 }
-
-InfoBar.defaultProps = {
-    variant: 'caption',
-    labelColor: 'textSecondary',
-    labelComponent: 'span',
-    captionVariant: 'caption',
-    captionColor: 'textPrimary',
-    captionComponent: 'span',
-    valueColor: 'primary',
-    animate: 'progress'
-};
 
 InfoBar.propTypes = {
     label: PropTypes.string,

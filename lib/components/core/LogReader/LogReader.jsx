@@ -6,6 +6,17 @@ import { Scroller, InfiniteScroller, Loading } from '../';
 import { validators } from 'investira.sdk';
 
 function LogReader(props) {
+    const {
+        label,
+        data,
+        uri,
+        responseData,
+        type = 'string',
+        autoScroller = true,
+        scrollerProps = {},
+        scrollOnMount = false
+    } = props;
+
     const log = useRef();
     const scroller = useRef();
     let timeout = null;
@@ -25,7 +36,7 @@ function LogReader(props) {
             pElem.innerHTML = pData;
         }
 
-        onMountScroll(onMountScrolled, props.scrollOnMount);
+        onMountScroll(onMountScrolled, scrollOnMount);
 
         timeout = props.autoScroller && window.setTimeout(autoScroller, 300);
     };
@@ -102,7 +113,7 @@ function LogReader(props) {
         return xDataFormated;
     };
 
-    const autoScroller = () => {
+    const pvAutoScroller = () => {
         if (scroller && scroller.current) {
             const xCurrentScroller = scroller.current;
             const xScroller = xCurrentScroller.scroller
@@ -116,17 +127,15 @@ function LogReader(props) {
 
     useEffect(() => {
         if (onMountScrolled) {
-            window.setTimeout(autoScroller, 300);
+            window.setTimeout(pvAutoScroller, 300);
         }
     }, [onMountScrolled]);
 
     useEffect(() => {
-        const { uri, data, responseData, type } = props;
         readData(type, data || uri || responseData, log);
-    }, [props.responseData]);
+    }, [type, data, uri, responseData, log]);
 
     useEffect(() => {
-        const { uri, data, responseData, type } = props;
         if (data || uri || responseData) {
             readData(type, data || uri || responseData, log);
         }
@@ -135,17 +144,17 @@ function LogReader(props) {
         };
     }, []);
 
-    const Component = validators.isEmpty(props.scrollerProps) ? Scroller : InfiniteScroller;
+    const Component = validators.isEmpty(scrollerProps) ? Scroller : InfiniteScroller;
 
     return (
         <>
-            {props.label && (
+            {label && (
                 <Typography variant={'body2'} color={'textSecondary'} gutterBottom>
-                    {props.label}
+                    {label}
                 </Typography>
             )}
             <Box position={'relative'} height={'calc(100% - 25px)'}>
-                <Component ref={scroller} {...props.scrollerProps}>
+                <Component ref={scroller} {...scrollerProps}>
                     <Box
                         component="pre"
                         sx={{
@@ -177,13 +186,6 @@ LogReader.propTypes = {
     autoScroller: PropTypes.bool,
     scrollerProps: PropTypes.object,
     scrollOnMount: PropTypes.bool
-};
-
-LogReader.defaultProps = {
-    type: 'string',
-    autoScroller: true,
-    scrollerProps: {},
-    scrollOnMount: false
 };
 
 LogReader.displayName = 'LogReader';

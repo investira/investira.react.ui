@@ -5,6 +5,19 @@ import { formats, validators } from 'investira.sdk';
 formats.locale('pt-br');
 
 function InfoDates(props) {
+    const {
+        variant = 'caption',
+        labelVariant = 'caption',
+        timeVariant = 'caption',
+        colon = false,
+        gutterBottom = true,
+        label,
+        time,
+        bold,
+        color,
+        format,
+        direction
+    } = props;
     return (
         <Box
             sx={[
@@ -19,65 +32,53 @@ function InfoDates(props) {
                     }
                 ]}>
                 <Typography
-                    variant={props.labelVariant}
+                    variant={labelVariant}
                     color={'textSecondary'}
-                    gutterBottom={props.gutterBottom}
+                    gutterBottom={gutterBottom}
                     component="p">
-                    {props.label}
-                    {(props.colon || props.direction === 'horizontal') && ':'}
+                    {label}
+                    {(colon || direction === 'horizontal') && ':'}
                 </Typography>
             </Box>
-            {validators.isEmpty(props.time) ? (
+            {validators.isEmpty(time) ? (
                 <Typography
-                    variant={props.timeVariant}
+                    variant={timeVariant}
                     color={'textPrimary'}
-                    gutterBottom={props.gutterBottom}
+                    gutterBottom={gutterBottom}
                     component="p">
                     --
                 </Typography>
-            ) : props.bold ? (
+            ) : bold ? (
                 <Typography
-                    variant={props.timeVariant}
-                    color={props.color || 'textPrimary'}
-                    gutterBottom={props.gutterBottom}
+                    variant={timeVariant}
+                    color={color || 'textPrimary'}
+                    gutterBottom={gutterBottom}
                     component="p">
                     <b>
-                        {props.variant === 'custom' &&
-                            formats.formatDateCustom(props.time, props.format)}
-                        {props.variant === 'datetime' &&
-                            formats.formatDateCustom(props.time, 'DD/MMM/YY HH:mm')}
-                        {props.variant === 'date' &&
-                            formats.formatDateCustom(props.time, 'DD/MMM/YY')}
-                        {props.variant === 'duration' && formats.duration(props.time)}
-                        {props.variant === 'fromnow' && formats.fromNow(props.time)}
+                        {variant === 'custom' && formats.formatDateCustom(time, format)}
+                        {variant === 'datetime' &&
+                            formats.formatDateCustom(time, 'DD/MMM/YY HH:mm')}
+                        {variant === 'date' && formats.formatDateCustom(time, 'DD/MMM/YY')}
+                        {variant === 'duration' && formats.duration(time)}
+                        {variant === 'fromnow' && formats.fromNow(time)}
                     </b>
                 </Typography>
             ) : (
                 <Typography
-                    variant={props.timeVariant}
-                    color={props.color || 'textPrimary'}
-                    gutterBottom={props.gutterBottom}
+                    variant={timeVariant}
+                    color={color || 'textPrimary'}
+                    gutterBottom={gutterBottom}
                     component="p">
-                    {props.variant === 'custom' &&
-                        formats.formatDateCustom(props.time, props.format)}
-                    {props.variant === 'datetime' &&
-                        formats.formatDateCustom(props.time, 'DD/MMM/YY HH:mm')}
-                    {props.variant === 'date' && formats.formatDateCustom(props.time, 'DD/MMM/YY')}
-                    {props.variant === 'duration' && formats.duration(props.time)}
-                    {props.variant === 'fromnow' && formats.fromNow(props.time)}
+                    {variant === 'custom' && formats.formatDateCustom(time, format)}
+                    {variant === 'datetime' && formats.formatDateCustom(time, 'DD/MMM/YY HH:mm')}
+                    {variant === 'date' && formats.formatDateCustom(time, 'DD/MMM/YY')}
+                    {variant === 'duration' && formats.duration(time)}
+                    {variant === 'fromnow' && formats.fromNow(time)}
                 </Typography>
             )}
         </Box>
     );
 }
-
-InfoDates.defaultProps = {
-    variant: 'caption',
-    labelVariant: 'caption',
-    timeVariant: 'caption',
-    colon: false,
-    gutterBottom: true
-};
 
 InfoDates.propTypes = {
     className: PropTypes.string,

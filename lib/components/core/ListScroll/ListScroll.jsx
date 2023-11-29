@@ -9,10 +9,10 @@ const ListScroll = memo(props => {
     return (
         <InfiniteScroller onNextPage={onNextPage} nextPage={nextPage}>
             <ContentList
-                list={list}
+                list={list || []}
                 item={item}
                 emptyMessage={emptyMessage}
-                itemProps={itemProps}
+                itemProps={itemProps || {}}
             />
         </InfiniteScroller>
     );
@@ -27,11 +27,6 @@ ListScroll.propTypes = {
     onNextPage: PropTypes.func,
     nextPage: PropTypes.bool
     //onExited: PropTypes.func
-};
-
-ListScroll.defaultProps = {
-    itemProps: {},
-    list: []
 };
 
 ListScroll.displayName = 'ListScroll';

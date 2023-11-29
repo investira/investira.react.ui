@@ -4,6 +4,7 @@ import { validators } from 'investira.sdk';
 import { currency } from '@investira/utilities';
 
 const InputDecimal = forwardRef((props, ref) => {
+    const { decimal = 4 } = props;
     const [value, setValue] = useState(props.value);
 
     function formatTextValue(pValue = '', pDecimal = 4, pLocale = 'pt-BR', pSeparator = ',') {
@@ -15,12 +16,12 @@ const InputDecimal = forwardRef((props, ref) => {
 
     function handleChange(pEvent) {
         pEvent.persist();
-        const xValueAsCurrency = formatTextValue(pEvent.target.value, props.decimal);
+        const xValueAsCurrency = formatTextValue(pEvent.target.value, decimal);
 
         setValue(xValueAsCurrency);
 
         if (props.onChange) {
-            props.onChange(pEvent, currency.currencyToNumber(xValueAsCurrency, '.', props.decimal));
+            props.onChange(pEvent, currency.currencyToNumber(xValueAsCurrency, '.', decimal));
         }
     }
 
@@ -51,11 +52,6 @@ InputDecimal.propTypes = {
     currency: PropTypes.string,
     separator: PropTypes.oneOf(['.', ',']),
     decimal: PropTypes.number
-};
-
-InputDecimal.defaultProps = {
-    separator: ',',
-    decimal: 4
 };
 
 InputDecimal.displayName = 'InputDecimal';

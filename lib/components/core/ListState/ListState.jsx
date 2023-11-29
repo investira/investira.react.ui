@@ -4,13 +4,11 @@ import { Typography, Box } from '@mui/material';
 import { CenterInView, Loading } from '../';
 
 const ListMessage = memo(props => {
-    if (props.isFetching && props.listSize <= 0) {
+    const { isFetching, message, listSize = 0, padding = true, children } = props;
+
+    if (isFetching && listSize <= 0) {
         return (
-            <Box
-                sx={[
-                    { minHeight: '200px', width: '100%' },
-                    props.padding && { padding: '0 16px' }
-                ]}>
+            <Box sx={[{ minHeight: '200px', width: '100%' }, padding && { padding: '0 16px' }]}>
                 <CenterInView>
                     <Loading />
                 </CenterInView>
@@ -20,14 +18,10 @@ const ListMessage = memo(props => {
 
     if (props.message) {
         return (
-            <Box
-                sx={[
-                    { minHeight: '200px', width: '100%' },
-                    props.padding && { padding: '0 16px' }
-                ]}>
+            <Box sx={[{ minHeight: '200px', width: '100%' }, padding && { padding: '0 16px' }]}>
                 <CenterInView>
                     <Typography color={'textSecondary'} align={'center'}>
-                        {props.message}
+                        {message}
                     </Typography>
                 </CenterInView>
             </Box>
@@ -35,17 +29,11 @@ const ListMessage = memo(props => {
     }
 
     return (
-        <Box sx={[{ minHeight: '200px', width: '100%' }, props.padding && { padding: '0 16px' }]}>
-            {props.children}
+        <Box sx={[{ minHeight: '200px', width: '100%' }, padding && { padding: '0 16px' }]}>
+            {children}
         </Box>
     );
 });
-
-ListMessage.defaultProps = {
-    listSize: 0,
-    padding: true,
-    className: {}
-};
 
 ListMessage.propTypes = {
     listSize: PropTypes.number.isRequired,

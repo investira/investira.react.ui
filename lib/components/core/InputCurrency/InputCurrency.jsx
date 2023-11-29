@@ -1,29 +1,26 @@
 import { useEffect, useState, forwardRef } from 'react';
-import { currency } from '@investira/utilities';
+import { currency as utilCurrency } from '@investira/utilities';
 import { validators } from 'investira.sdk';
 import PropTypes from 'prop-types';
 
 const InputCurrency = forwardRef((props, ref) => {
+    const { decimal = 2, onChange, currency = 'BRL' } = props;
     const [value, setValue] = useState(props.value);
 
     function formatTextValue(pValue = '', pDecimal = 2, pCurrency = 'BRL') {
         const xValue = validators.isNumber(pValue) ? pValue.toFixed(pDecimal) : pValue;
 
-        return currency.toCurrency(xValue.toString(), '.', pCurrency, 'pt-BR', pDecimal);
+        return utilCurrency.toCurrency(xValue.toString(), '.', pCurrency, 'pt-BR', pDecimal);
     }
 
     function handleChange(pEvent) {
         pEvent.persist();
-        const xValueAsCurrency = formatTextValue(
-            pEvent.target.value,
-            props.decimal,
-            props.currency
-        );
+        const xValueAsCurrency = formatTextValue(pEvent.target.value, decimal, currency);
 
         setValue(xValueAsCurrency);
 
-        if (props.onChange) {
-            props.onChange(pEvent, currency.currencyToNumber(xValueAsCurrency, '.', props.decimal));
+        if (onChange) {
+            onChange(pEvent, utilCurrency.currencyToNumber(xValueAsCurrency, '.', decimal));
         }
     }
 
@@ -54,11 +51,6 @@ InputCurrency.propTypes = {
     currency: PropTypes.string,
     separator: PropTypes.oneOf(['.', ',']),
     decimal: PropTypes.number
-};
-
-InputCurrency.defaultProps = {
-    separator: ',',
-    currency: 'BRL'
 };
 
 InputCurrency.displayName = 'InputCurrency';
