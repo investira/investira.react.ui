@@ -5,6 +5,7 @@ import { Stack, Button, Typography, DialogContentText } from '@mui/material';
 import { CrudContext, DeckContext, Icon, CenterInView } from '../';
 
 const Crood = memo(props => {
+    const { showActions = false } = props;
     // Verifica se há o HOC withDialog
     if (!props.onOpenDialog) {
         console.error('"Crood" não está decorado com o HOC "withDialog".');
@@ -201,7 +202,7 @@ const Crood = memo(props => {
                             {editable ? editWithProps() : childrenWithProps}
                         </Stack>
 
-                        {props.showActions && (
+                        {showActions && (
                             <Stack
                                 component="nav"
                                 sx={{
@@ -261,10 +262,6 @@ Crood.propTypes = {
     onError: PropTypes.func,
     deleteMessage: PropTypes.string,
     onCloseDialog: PropTypes.func
-};
-
-Crood.defaultProps = {
-    showActions: true
 };
 
 export default Crood;

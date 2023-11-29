@@ -43,7 +43,7 @@ const Deck = memo(props => {
     }, []);
 
     const viewVariant = useCallback(
-        (pId, pActiveView, pPrevView) => {
+        (pId, pActiveView, pPrevView = []) => {
             let xVariant = '';
             if (isPrev(pPrevView, pId)) {
                 xVariant = 'prev';
@@ -94,7 +94,7 @@ const Deck = memo(props => {
                             variant={viewVariant(
                                 xChild.props.id,
                                 props.activeView,
-                                props.prevView
+                                props.prevView || []
                             )}>
                             {xChild}
                         </View>
@@ -124,10 +124,6 @@ Deck.propTypes = {
     prevView: PropTypes.array,
     activeView: PropTypes.string,
     children: PropTypes.node
-};
-
-Deck.defaultProps = {
-    prevView: []
 };
 
 Deck.displayName = 'Deck';

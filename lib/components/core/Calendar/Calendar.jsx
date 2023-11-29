@@ -23,7 +23,9 @@ const CalendarPicker = styled(MuiDateCalendar)(() => ({
 }));
 
 const Calendar = memo(props => {
-    const [date, setDate] = useState(props.initialSelectDate);
+    const { initialSelectDate, onChange, calendarPickerProps } = props;
+
+    const [date, setDate] = useState(initialSelectDate || new Date());
     //const locale = 'pt-BR';
 
     function handleChange(pNewDate) {
@@ -31,12 +33,12 @@ const Calendar = memo(props => {
     }
 
     useEffect(() => {
-        props.onChange(date);
+        onChange && onChange(date);
     }, [date]);
 
     return (
         <LocalizationProvider dateAdapter={AdapterDateFns} locale={brLocale}>
-            <CalendarPicker value={date} onChange={handleChange} {...props.calendarPickerProps} />
+            <CalendarPicker value={date} onChange={handleChange} {...(calendarPickerProps || {})} />
         </LocalizationProvider>
     );
 });
@@ -50,15 +52,6 @@ Calendar.propTypes = {
     openTo: PropTypes.string,
     disableHighlightToday: PropTypes.bool,
     calendarPickerProps: PropTypes.object
-};
-
-Calendar.defaultProps = {
-    initialSelectDate: new Date(),
-    onChange: () => {},
-    displayStaticWrapperAs: 'mobile',
-    openTo: 'year',
-    disableHighlightToday: false,
-    calendarPickerProps: {}
 };
 
 export default Calendar;

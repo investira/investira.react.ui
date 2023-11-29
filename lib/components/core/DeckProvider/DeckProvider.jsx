@@ -5,6 +5,7 @@ import { DeckContext } from '../';
 import { useMatch, useNavigate } from 'react-router-dom';
 
 const DeckProvider = memo(props => {
+    const { withRoute = false } = props;
     const [activeView, setActive] = useState(null);
     const [prevView, setPreview] = useState([]);
     const [beforeView, setBeforeView] = useState(null);
@@ -48,8 +49,8 @@ const DeckProvider = memo(props => {
             let xPrevView = [...prevView];
             const xActive = xPrevView.pop();
             const xIsInitialView = xActive === props.initialView;
-            props.withRoute && navigate(-1);
-            xIsInitialView && props.withRoute && pushPathName();
+            withRoute && navigate(-1);
+            xIsInitialView && withRoute && pushPathName();
 
             setActive(xActive);
             setPreview(xPrevView);
@@ -68,11 +69,11 @@ const DeckProvider = memo(props => {
     useEffect(() => {
         URL.current = match.url;
         setActive(props.initialView);
-        setPreview(props.initialPrev);
+        setPreview(props.initialPrev || []);
     }, [props.initialView, props.initialPrev, match.url]);
 
     useEffect(() => {
-        props.withRoute && pushPathName();
+        withRoute && pushPathName();
     }, []);
     return (
         <>
@@ -103,12 +104,6 @@ DeckProvider.propTypes = {
     withRoute: PropTypes.bool,
     children: PropTypes.node,
     value: PropTypes.object
-};
-
-DeckProvider.defaultProps = {
-    value: {},
-    initialPrev: [],
-    withRoute: false
 };
 
 export default DeckProvider;

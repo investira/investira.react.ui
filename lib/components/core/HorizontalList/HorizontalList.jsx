@@ -34,6 +34,7 @@ const Child = styled(Box)(() => ({
 }));
 
 const HorizontalList = memo(props => {
+    const { initialFocus = 0 } = props;
     const isMount = useRef(false);
     const elementsRef = [];
 
@@ -42,7 +43,7 @@ const HorizontalList = memo(props => {
     let isClicked = false;
 
     const scrollableRef = React.useRef();
-    const [elemFocusIndex, setElemFocusIndex] = useState(props.initialFocus);
+    const [elemFocusIndex, setElemFocusIndex] = useState(initialFocus);
     const [childFocused, setChildFocused] = useState(props.id + '0');
     const [initElementsRef, setInitElementsRef] = useState([]);
     const [positions, setPositions] = useState([0]);
@@ -116,9 +117,9 @@ const HorizontalList = memo(props => {
     };
 
     useEffect(() => {
-        setElemFocusIndex(props.initialFocus);
-        setChildFocused(props.id + props.initialFocus);
-    }, [props.initialFocus]);
+        setElemFocusIndex(initialFocus);
+        setChildFocused(props.id + initialFocus);
+    }, [initialFocus]);
 
     // TODO: Observar se esse trecho ainda é necessário
     useEffect(() => {
@@ -136,7 +137,7 @@ const HorizontalList = memo(props => {
             const xPositions = elemsInitPosition(elementsRef);
             setPositions(xPositions);
             setInitElementsRef([...elementsRef]);
-            centerInScroll(props.initialFocus, [...elementsRef], xPositions);
+            centerInScroll(initialFocus, [...elementsRef], xPositions);
         }
         //Unmount
         return () => {

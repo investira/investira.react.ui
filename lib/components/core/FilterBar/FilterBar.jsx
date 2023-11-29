@@ -34,6 +34,7 @@ const Button = styled('button')(({ active, theme }) => ({
 }));
 
 const FilterBar = props => {
+    const { margin = true } = props;
     const [active, setActive] = useState(props.initialValue);
 
     const handleClick = pEvent => {
@@ -45,7 +46,7 @@ const FilterBar = props => {
     const xData = props.data || [];
 
     return (
-        <Root margin={props.margin}>
+        <Root margin={margin}>
             <Stack
                 sx={{
                     flexWrap: 'nowrap',
@@ -84,10 +85,6 @@ FilterBar.propTypes = {
     data: PropTypes.array,
     initialValue: PropTypes.number,
     margin: PropTypes.bool
-};
-
-FilterBar.defaultProps = {
-    margin: true
 };
 
 FilterBar.displayName = 'FilterBar';

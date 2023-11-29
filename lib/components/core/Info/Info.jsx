@@ -3,61 +3,76 @@ import { validators } from 'investira.sdk';
 import PropTypes from 'prop-types';
 
 function Info(props) {
+    const {
+        variant = 'caption',
+        labelColor = 'textSecondary',
+        gutterBottom = true,
+        valueColor = 'textPrimary',
+        variantValue = 'caption',
+        direction = 'vertical',
+        colon = false,
+        bold = false,
+        gutter,
+        label,
+        onClick,
+        value
+    } = props;
+
     return (
         <Box
             sx={[
-                props.gutter === 'full' && {
+                gutter === 'full' && {
                     mx: 2
                 },
-                props.gutter === 'left' && {
+                gutter === 'left' && {
                     ml: 2
                 },
-                props.gutter === 'right' && {
+                gutter === 'right' && {
                     mr: 2
                 },
-                props.direction === 'horizontal' && {
+                direction === 'horizontal' && {
                     display: 'flex',
                     alignItems: 'center'
                 }
             ]}
-            id={props.label}
-            onClick={props.onClick}>
+            id={label}
+            onClick={onClick}>
             <Box
                 sx={{
-                    ...(props.direction === 'horizontal' && {
+                    ...(direction === 'horizontal' && {
                         mr: 1
                     })
                 }}>
                 <Typography
-                    variant={props.variant}
-                    color={props.labelColor}
-                    gutterBottom={props.gutterBottom}
+                    variant={variant}
+                    color={labelColor}
+                    gutterBottom={gutterBottom}
                     component="p">
-                    {props.label}
-                    {(props.colon || props.direction === 'horizontal') && ':'}
+                    {label}
+                    {(colon || direction === 'horizontal') && ':'}
                 </Typography>
             </Box>
-            {validators.isEmpty(props.value) ? (
+            {validators.isEmpty(value) ? (
                 <Typography
-                    variant={props.variantValue}
-                    color={props.valueColor}
-                    gutterBottom={props.gutterBottom}
+                    variant={variantValue}
+                    color={valueColor}
+                    gutterBottom={gutterBottom}
                     component="p">
                     --
                 </Typography>
-            ) : props.bold ? (
+            ) : bold ? (
                 <Typography
-                    variant={props.variantValue || props.variant}
-                    color={props.valueColor}
-                    gutterBottom={props.gutterBottom}
+                    variant={variantValue || variant}
+                    color={valueColor}
+                    gutterBottom={gutterBottom}
                     component="p">
                     <b> {props.value} </b>
                 </Typography>
             ) : (
                 <Typography
-                    variant={props.variantValue || props.variant}
-                    color={props.valueColor}
-                    gutterBottom={props.gutterBottom}
+                    variant={variantValue || variant}
+                    color={valueColor}
+                    gutterBottom={gutterBottom}
                     component="p">
                     {props.value}
                 </Typography>
@@ -65,17 +80,6 @@ function Info(props) {
         </Box>
     );
 }
-
-Info.defaultProps = {
-    variant: 'caption',
-    labelColor: 'textSecondary',
-    gutterBottom: true,
-    valueColor: 'textPrimary',
-    variantValue: 'caption',
-    direction: 'vertical',
-    colon: false,
-    bold: false
-};
 
 Info.propTypes = {
     onClick: PropTypes.func,

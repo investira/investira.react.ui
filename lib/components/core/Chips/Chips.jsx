@@ -4,10 +4,11 @@ import HorizontalList from '../HorizontalList';
 import ChipsItem from './ChipsItem';
 
 function Chips(props) {
+    const { id = 'generico', initialFocus = 0, onDelete, onClick } = props;
     const [data, setData] = useState([]);
 
     const handleClick = (pData, pIndex) => {
-        props.onClick && props.onClick(pData, pIndex);
+        onClick && onClick(pData, pIndex);
     };
 
     const handleDelete = pItemData => {
@@ -19,20 +20,20 @@ function Chips(props) {
     };
 
     useEffect(() => {
-        setData(Object.values(props.data));
+        setData(Object.values(props.data || {}));
     }, [props.data]);
 
     return (
         <HorizontalList
-            id={`chips-${props.id || 'generico'}`}
+            id={`chips-${id}`}
             data={data}
             child={ChipsItem}
             childProps={{
                 onClick: handleClick,
-                ...(props.onDelete && { onDelete: handleDelete }),
+                ...(onDelete && { onDelete: handleDelete }),
                 ...props.chipProps
             }}
-            initialFocus={Number(props.initialFocus)}
+            initialFocus={Number(initialFocus)}
         />
     );
 }
@@ -49,12 +50,6 @@ Chips.propTypes = {
     chipProps: PropTypes.object,
     initialFocus: PropTypes.number,
     id: PropTypes.string
-};
-
-Chips.defaultProps = {
-    name: 'default',
-    color: 'default',
-    variant: 'default'
 };
 
 Chips.displayName = 'Chips';

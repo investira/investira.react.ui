@@ -4,6 +4,17 @@ import { formats } from 'investira.sdk';
 import { Rate } from '../';
 
 function Format(props) {
+    const {
+        format = 'text',
+        value = '0',
+        decimais = 2,
+        color = 'textPrimary',
+        size = 16,
+        variant = 'caption',
+        status = 1,
+        ...restProps
+    } = props;
+
     const formatValue = (pType, pValue, pDecimais) => {
         const xValue = {
             ...(['currency', 'currency_abs', 'number', 'percentual'].includes(props.format) && {
@@ -25,7 +36,7 @@ function Format(props) {
                 hour:
                     typeof pValue === 'string' ? pValue : formats.formatDateCustom(pValue, 'HH:mm')
             }),
-            rate: <Rate value={pValue} status={props.status} size={props.size} />,
+            rate: <Rate value={pValue} status={status} size={props.size} />,
             text: pValue,
             percentual: `${pValue}%`
         };
@@ -33,9 +44,11 @@ function Format(props) {
         return xValue[pType] || pValue;
     };
 
-    const { format, value, decimais, ...restProps } = props;
-
-    return <Typography {...restProps}>{formatValue(format, value, decimais)}</Typography>;
+    return (
+        <Typography color={color} size={size} variant={variant} {...restProps}>
+            {formatValue(format, value, decimais)}
+        </Typography>
+    );
 }
 
 Format.propTypes = {
@@ -55,15 +68,6 @@ Format.propTypes = {
     color: PropTypes.string,
     status: PropTypes.oneOf([0, 1, 2]),
     decimais: PropTypes.number
-};
-
-Format.defaultProps = {
-    format: 'text',
-    value: 0,
-    color: 'textPrimary',
-    size: 16,
-    variant: 'caption',
-    status: 1
 };
 
 Format.displayName = 'Format';
