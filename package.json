@@ -2,25 +2,24 @@
     "name": "@investira/react.ui",
     "private": false,
     "version": "0.6.5",
-    "type": "module",
-    "main": "./dist/core.cjs",
-    "module": "./dist/core.js",
+    "main": "./dist/core.js",
+    "module": "./dist/core.mjs",
     "exports": {
         ".": {
-            "import": "./dist/core.js",
-            "require": "./dist/core.cjs"
+            "import": "./dist/core.mjs",
+            "require": "./dist/core.js"
         },
         "./mui": {
-            "import": "./dist/mui.js",
-            "require": "./dist/mui.cjs"
+            "import": "./dist/mui.mjs",
+            "require": "./dist/mui.js"
         },
         "./themes": {
-            "import": "./dist/themes.js",
-            "require": "./dist/themes.cjs"
+            "import": "./dist/themes.mjs",
+            "require": "./dist/themes.js"
         },
         "./utilities": {
-            "import": "./dist/utilities.js",
-            "require": "./dist/utilities.cjs"
+            "import": "./dist/utilities.mjs",
+            "require": "./dist/utilities.js"
         }
     },
     "files": [
