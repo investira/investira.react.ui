@@ -1,0 +1,13 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Slide } from '@mui/material';
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+    return <Slide direction={props.direction || 'up'} ref={ref} {...props} />;
+});
+
+Transition.propTypes = {
+    direction: PropTypes.string
+};
+
+export default Transition;
