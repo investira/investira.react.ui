@@ -149,5 +149,8 @@
         "ui",
         "react"
     ],
-    "license": "GPL-3.0-only"
+    "license": "GPL-3.0-only",
+    "publishConfig": {
+        "access": "public"
+    }
 }
