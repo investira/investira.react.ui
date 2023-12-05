@@ -4,6 +4,8 @@
     "version": "0.6.5",
     "main": "./dist/core.js",
     "module": "./dist/core.mjs",
+    "author": "investira",
+    "type": "module",
     "exports": {
         ".": {
             "import": "./dist/core.mjs",
@@ -134,5 +136,18 @@
     "dependencies": {
         "events": "^3.3.0",
         "process": "^0.11.10"
-    }
+    },
+    "homepage": "https://investira.com.br/",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/investira/investira.react.ui"
+    },
+    "bugs": {
+        "url": "https://github.com/investira/investira.react.ui/issues"
+    },
+    "keywords": [
+        "ui",
+        "react"
+    ],
+    "license": "GPL-3.0-only"
 }
